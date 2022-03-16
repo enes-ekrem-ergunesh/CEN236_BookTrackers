@@ -19,7 +19,9 @@ class TodoDao{
     if ($this->conn->connect_error) {
       die("Connection failed!!: " . $conn->connect_error);
     }
-    echo "Connected successfully!!";
+    else{
+      echo "Connected successfully!!";      
+    }
   }
 
   /**

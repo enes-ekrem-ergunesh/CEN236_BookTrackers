@@ -17,9 +17,9 @@ class TodoDao{
     $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     // Check connection
     if ($this->conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
+      die("Connection failed!!: " . $conn->connect_error);
     }
-    echo "Connected successfully";
+    echo "Connected successfully!!";
   }
 
   /**

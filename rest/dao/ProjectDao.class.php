@@ -1,6 +1,6 @@
 <?php
 
-class TodoDao{
+class ProjectDao{
 
   private $conn;
 
@@ -12,23 +12,24 @@ class TodoDao{
     $username = "root";
     $password = "memduh2PRD";
     $schema = "book_tracking_app";
+    // $servername = "sql.freedb.tech";
+    // $username = "freedb_enesekremergunesh";
+    // $password = "Swm7JT\$BjpQ2eTR";
+    // $schema = "freedb_cen236_booktrackers";
     $this->conn = new PDO("mysql:host=$servername;dbname=$schema", $username, $password);
     // set the PDO error mode to exception
     $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     // Check connection
-    if ($this->conn->connect_error) {
-      die("Connection failed!!: " . $conn->connect_error);
-    }
-    else{
-      echo "Connected successfully!";
-    }
+
+      echo "Connected successfully!\n";
+
   }
 
   /**
   * Method used to read all todo objects from database
   */
   public function get_all(){
-    $stmt = $this->conn->prepare("SELECT * FROM users");
+    $stmt = $this->conn->prepare("SELECT * FROM pages");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }

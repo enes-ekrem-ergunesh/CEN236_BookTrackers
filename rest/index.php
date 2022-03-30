@@ -7,8 +7,8 @@ error_reporting(E_ALL);
 require_once '../vendor/autoload.php';
 
 
-Flight::route('GET /todos', function(){
-  echo 'testttstsj';
+Flight::route('GET /test', function(){
+  echo 'TEST!';
 });
 
 //

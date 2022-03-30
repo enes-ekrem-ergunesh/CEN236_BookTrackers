@@ -11,18 +11,9 @@ Flight::route('GET /test', function(){
   echo 'TEST!';
 });
 
-//
-// Flight::route('GET /items', function(){
-//     echo 'hello test!';
-// });
-
 Flight::route('/@name', function($name){
     echo 'require ', $name;
 });
-
-// Flight::route('/indtestex.php', function(){
-//     echo 'hello index.php!';
-// });
 
 Flight::start();
 

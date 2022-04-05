@@ -26,37 +26,37 @@ class ProjectDao{
   }
 
   /**
-  * Method used to read all todo objects from database
+  * Method used to read all user objects from database
   */
   public function get_all(){
-    $stmt = $this->conn->prepare("SELECT * FROM pages");
+    $stmt = $this->conn->prepare("SELECT * FROM users");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
   /**
-  * Method used to add todo to the database
+  * Method used to add user to the database
   */
-  public function add($description, $created){
-    $stmt = $this->conn->prepare("INSERT INTO todos (description, created) VALUES (:description, :created)");
-    $stmt->execute(['description' => $description, 'created' => $created]);
+  public function add($username, $email, $password, $first_name, $last_name, $avatar_id){
+    $stmt = $this->conn->prepare("INSERT INTO user (username, email, password, first_name, last_name, avatar_id) VALUES (:username, :email, :password, :first_name, :last_name, :avatar_id)");
+    $stmt->execute(['username' => $username, 'email' => $email, 'password' => $password, 'first_name' => $first_name, 'last_name' => $last_name, 'avatar_id' => $avatar_id]);
   }
 
   /**
-  * Delete todo record from the database
+  * Delete user record from the database
   */
-  public function delete($id){
-    $stmt = $this->conn->prepare("DELETE FROM todos WHERE id=:id");
-    $stmt->bindParam(':id', $id); // SQL injection prevention
+  public function delete($user_id){
+    $stmt = $this->conn->prepare("DELETE FROM users WHERE user_id=:user_id");
+    $stmt->bindParam(':user_id', $user_id); // SQL injection prevention
     $stmt->execute();
   }
 
   /**
-  * Update todo record
+  * Update user record
   */
-  public function update($id, $description, $created){
-    $stmt = $this->conn->prepare("UPDATE todos SET description=:description, created=:created WHERE id=:id");
-    $stmt->execute(['id' => $id, 'description' => $description, 'created' => $created]);
+  public function update($user_id, $username, $email, $password, $first_name, $last_name, $avatar_id){
+    $stmt = $this->conn->prepare("UPDATE users SET username=:username, email=:email, password=:password, first_name=:first_name, last_name=:last_name, avatar_id=:avatar_id WHERE user_id=:user_id");
+    $stmt->execute(['user_id' => $user_id, 'username' => $username, 'email' => $email, 'password' => $password, 'first_name' => $first_name, 'last_name' => $last_name, 'avatar_id' => $avatar_id]);
   }
 
 }

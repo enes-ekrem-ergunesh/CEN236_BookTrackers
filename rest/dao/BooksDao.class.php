@@ -1,6 +1,6 @@
 <?php
 
-class ProjectDao{
+class BooksDao{
 
   private $conn;
 
@@ -11,7 +11,7 @@ class ProjectDao{
     $servername = "localhost";
     $username = "root";
     $password = "memduh2PRD";
-    $schema = "book_tracking_app";
+    $schema = "book_trackers";
     // $servername = "sql.freedb.tech";
     // $username = "freedb_enesekremergunesh";
     // $password = "Swm7JT\$BjpQ2eTR";
@@ -29,7 +29,7 @@ class ProjectDao{
   * Method used to read all user objects from database
   */
   public function get_all(){
-    $stmt = $this->conn->prepare("SELECT * FROM users");
+    $stmt = $this->conn->prepare("SELECT * FROM books");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }

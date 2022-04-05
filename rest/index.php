@@ -11,41 +11,36 @@ require_once '../vendor/autoload.php';
 // CRUD operations for users entity
 
 /**
- * List all users
- */
- Flight::route('GET /user', function(){
-   $dao = new UserDao();
-   $users = $dao->get_all();
-   Flight::json($users);
- });
+* List all books
+*/
+Flight::route('GET /books', function(){
+  $dao = new BookDao();
+  $books = $dao->get_all();
+  Flight::json($books);
+});
 
-  /**
-   * print individual user
-   */
-   Flight::route('GET /user/@id', function($id){
-     $dao = new UserDao();
-     $user = $dao->get_by_id($id);
-     Flight::json($user);
-   });
+/**
+* print individual book
+*/
+Flight::route('GET /books/@id', function($id){
+  $dao = new BookDao();
+  $book = $dao->get_by_id($id);
+  Flight::json($book);
+});
+
+/**
+* add book
+*/
+Flight::route('POST /books', function(){
+  $dao = new BookDao();
+  $request = Flight::request();
+  $data = $request->data->getData();
+  $dao->add($data['title'],$data['num_pages'], $data['author_id'], $data['publication'],
+            $data['language'], $data['source'], $data['release_date']);
+});
 
 
- /**
-  * List all books
-  */
-  Flight::route('GET /book', function(){
-    $dao = new BookDao();
-    $books = $dao->get_all();
-    Flight::json($books);
-  });
 
-   /**
-    * print individual book
-    */
-    Flight::route('GET /book/@id', function($id){
-      $dao = new BookDao();
-      $book = $dao->get_by_id($id);
-      Flight::json($book);
-    });
 
 
 

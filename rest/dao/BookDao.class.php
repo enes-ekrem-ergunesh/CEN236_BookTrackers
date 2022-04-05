@@ -45,11 +45,14 @@ class BookDao{
     }
 
   /**
-  * Method used to add user to the database
+  * Method used to add book to the database
   */
-  public function add($username, $email, $password, $first_name, $last_name, $avatar_id){
-    $stmt = $this->conn->prepare("INSERT INTO user (username, email, password, first_name, last_name, avatar_id) VALUES (:username, :email, :password, :first_name, :last_name, :avatar_id)");
-    $stmt->execute(['username' => $username, 'email' => $email, 'password' => $password, 'first_name' => $first_name, 'last_name' => $last_name, 'avatar_id' => $avatar_id]);
+  public function add($title, $num_pages, $author_id, $publication, $language, $source, $release_date){
+    $stmt = $this->conn->prepare(
+      "INSERT INTO books(title, num_pages, author_id, publication, language, source, release_date)
+      VALUES (:title, :num_pages, :author_id, :publication, :language, :source, :release_date)");
+    $stmt->execute(['title' => $title, 'num_pages' => $num_pages, 'author_id' => $author_id,
+    'publication' => $publication, 'language' => $language, 'source' => $source, 'release_date' => $release_date]);
   }
 
   /**

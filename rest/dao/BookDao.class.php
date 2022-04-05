@@ -1,6 +1,6 @@
 <?php
 
-class UsersDao{
+class BookDao{
 
   private $conn;
 
@@ -26,13 +26,23 @@ class UsersDao{
   }
 
   /**
-  * Method used to read all user objects from database
+  * Method used to read all book objects from database
   */
   public function get_all(){
-    $stmt = $this->conn->prepare("SELECT * FROM users");
+    $stmt = $this->conn->prepare("SELECT * FROM books");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
+
+    /**
+    * Method used to read individual book objects from database
+    */
+    public function get_by_id($id){
+      $stmt = $this->conn->prepare("SELECT * FROM books WHERE id = :id");
+      $stmt->execute(['id' => $id]);
+      $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return @reset($result);
+    }
 
   /**
   * Method used to add user to the database

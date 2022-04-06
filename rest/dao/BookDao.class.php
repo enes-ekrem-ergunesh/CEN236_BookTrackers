@@ -58,9 +58,9 @@ class BookDao{
   /**
   * Delete user record from the database
   */
-  public function delete($user_id){
-    $stmt = $this->conn->prepare("DELETE FROM users WHERE user_id=:user_id");
-    $stmt->bindParam(':user_id', $user_id); // SQL injection prevention
+  public function delete($id){
+    $stmt = $this->conn->prepare("DELETE FROM books WHERE id=:id");
+    $stmt->bindParam(':id', $id); // SQL injection prevention
     $stmt->execute();
   }
 

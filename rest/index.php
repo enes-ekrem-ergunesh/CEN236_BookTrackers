@@ -8,14 +8,15 @@ require_once 'dao/UserDao.class.php';
 require_once 'dao/BookDao.class.php';
 require_once '../vendor/autoload.php';
 
+Flight::register('bookDao', 'BookDao');
+
 // CRUD operations for users entity
 
 /**
 * List all books
 */
 Flight::route('GET /books', function(){
-  $dao = new BookDao();
-  $books = $dao->get_all();
+  $books = Flight::bookDao()->get_all();
   Flight::json($books);
 });
 
@@ -23,8 +24,7 @@ Flight::route('GET /books', function(){
 * print individual book
 */
 Flight::route('GET /books/@id', function($id){
-  $dao = new BookDao();
-  $book = $dao->get_by_id($id);
+  $book = Flight::bookDao()->get_by_id($id);
   Flight::json($book);
 });
 
@@ -32,11 +32,18 @@ Flight::route('GET /books/@id', function($id){
 * add book
 */
 Flight::route('POST /books', function(){
-  $dao = new BookDao();
   $request = Flight::request();
   $data = $request->data->getData();
-  $dao->add($data['title'],$data['num_pages'], $data['author_id'], $data['publication'],
+  Flight::bookDao()->add($data['title'],$data['num_pages'], $data['author_id'], $data['publication'],
             $data['language'], $data['source'], $data['release_date']);
+});
+
+/**
+* delete book
+*/
+Flight::route('DELETE /books/@id', function($id){
+  Flight::bookDao()->delete($id);
+  Flight::json(["message" => "deleted"]);
 });
 
 

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>App Title</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-  </head>
+
+<head>
+  <meta charset="utf-8">
+  <title>BookTrackers App</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+
 <body>
   <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -37,17 +39,51 @@
   <main>
     <div class="container marketing" style="margin-top:100px;">
       <!-- Three columns of text below the carousel -->
-      <div id="todo-list" class="row">
-        <div class="spinner-border" role="status">
-          <span class="sr-only"></span>
+      <div id="book-list" class="row">
+        <div class="col-lg-4">
+          <h2>Heading</h2>
+          <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+          <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+
+        <div class="col-lg-4">
+          <h2>Heading</h2>
+          <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
+          <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+
+        <div class="col-lg-4">
+          <h2></h2>
+          <p></p>
+          <p><a class="btn btn-secondary" href="#">View details</a></p>
         </div>
+
       </div><!-- /.row -->
     </div>
 
   </main>
 </body>
-  <script srs="js/jquery-3.6.0.min.js"></script>
-  <script srs="js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery-3.6.0.min.js"></script>
 
+<script>
+  // ajax get request from API
+  $.get("rest/books", function(data) {
+
+    $("#book-list").html("");
+
+    var html = "";
+    for(let i = 0; i < data.length; i++){
+      html += `
+      <div class="col-lg-4">
+        <h2>`+ data[i].release_date +`</h2>
+        <p>`+ data[i].title +`</p>
+        <p><a class="btn btn-secondary" href="#">View details</a></p>
+      </div> `;
+    }
+    $("#book-list").html(html);
+    console.log(data);
+    //alert("Load was performed.");
+  });
+</script>
 
 </html>

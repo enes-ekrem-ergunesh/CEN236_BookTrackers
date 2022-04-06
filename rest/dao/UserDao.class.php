@@ -1,6 +1,6 @@
 <?php
 
-class ProjectDao{
+class UserDao{
 
   private $conn;
 
@@ -11,7 +11,7 @@ class ProjectDao{
     $servername = "localhost";
     $username = "root";
     $password = "memduh2PRD";
-    $schema = "book_tracking_app";
+    $schema = "book_trackers";
     // $servername = "sql.freedb.tech";
     // $username = "freedb_enesekremergunesh";
     // $password = "Swm7JT\$BjpQ2eTR";
@@ -33,6 +33,15 @@ class ProjectDao{
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
+
+    /**
+    * Method used to read individual user objects from database
+    */
+    public function get_by_id($id){
+      $stmt = $this->conn->prepare("SELECT * FROM users WHERE id = :id");
+      $stmt->execute(['id' => $id]);
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
   /**
   * Method used to add user to the database

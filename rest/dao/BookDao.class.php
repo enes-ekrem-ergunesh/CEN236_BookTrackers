@@ -57,7 +57,7 @@ class BookDao{
   }
 
   /**
-  * Delete user record from the database
+  * Delete book record from the database
   */
   public function delete($id){
     $stmt = $this->conn->prepare("DELETE FROM books WHERE id=:id");
@@ -66,11 +66,13 @@ class BookDao{
   }
 
   /**
-  * Update user record
+  * Update book record
   */
-  public function update($user_id, $username, $email, $password, $first_name, $last_name, $avatar_id){
-    $stmt = $this->conn->prepare("UPDATE users SET username=:username, email=:email, password=:password, first_name=:first_name, last_name=:last_name, avatar_id=:avatar_id WHERE user_id=:user_id");
-    $stmt->execute(['user_id' => $user_id, 'username' => $username, 'email' => $email, 'password' => $password, 'first_name' => $first_name, 'last_name' => $last_name, 'avatar_id' => $avatar_id]);
+  public function update($book){
+    $stmt = $this->conn->prepare("UPDATE books SET title=:title, num_pages=:num_pages, author_id=:author_id,
+      publication=:publication, language=:language, source=:source, release_date=:release_date WHERE id=:id");
+    $stmt->execute($book);
+    return $book;
   }
 
 }

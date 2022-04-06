@@ -34,6 +34,15 @@ Flight::route('POST /books', function(){
 });
 
 /**
+* update book
+*/
+Flight::route('PUT /books/@id', function($id){
+  $data = Flight::request()->data->getData();
+  $data['id'] = $id;
+  Flight::json(Flight::bookDao()->update($data));
+});
+
+/**
 * delete book
 */
 Flight::route('DELETE /books/@id', function($id){

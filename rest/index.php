@@ -16,26 +16,21 @@ Flight::register('bookDao', 'BookDao');
 * List all books
 */
 Flight::route('GET /books', function(){
-  $books = Flight::bookDao()->get_all();
-  Flight::json($books);
+  Flight::json(Flight::bookDao()->get_all());
 });
 
 /**
 * print individual book
 */
 Flight::route('GET /books/@id', function($id){
-  $book = Flight::bookDao()->get_by_id($id);
-  Flight::json($book);
+  Flight::json(Flight::bookDao()->get_by_id($id));
 });
 
 /**
 * add book
 */
 Flight::route('POST /books', function(){
-  $request = Flight::request();
-  $data = $request->data->getData();
-  Flight::bookDao()->add($data['title'],$data['num_pages'], $data['author_id'], $data['publication'],
-            $data['language'], $data['source'], $data['release_date']);
+  Flight::json(Flight::bookDao()->add(Flight::request()->data->getData()));
 });
 
 /**

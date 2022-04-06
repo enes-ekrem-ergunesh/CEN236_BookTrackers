@@ -47,12 +47,13 @@ class BookDao{
   /**
   * Method used to add book to the database
   */
-  public function add($title, $num_pages, $author_id, $publication, $language, $source, $release_date){
+  public function add($book){
     $stmt = $this->conn->prepare(
       "INSERT INTO books(title, num_pages, author_id, publication, language, source, release_date)
       VALUES (:title, :num_pages, :author_id, :publication, :language, :source, :release_date)");
-    $stmt->execute(['title' => $title, 'num_pages' => $num_pages, 'author_id' => $author_id,
-    'publication' => $publication, 'language' => $language, 'source' => $source, 'release_date' => $release_date]);
+    $stmt->execute($book);
+    $book['id'] = $this->conn->lastInsertId();
+    return $book;
   }
 
   /**

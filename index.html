@@ -53,35 +53,80 @@
 
 <script>
   // ajax get request from API
-  $.get("rest/books", function(data) {
+  getBooks();
 
-    $("#book-list").html("");
+  function getBooks(){
+    $.get("rest/books", function(data) {
 
-    var html = "";
-    for(let i = 0; i < data.length; i++){
-      html += `
-      <div class="col-lg-4">
-        <h2>`+ data[i].title +`</h2>
-        <p>`+ data[i].publication +`</p>
-        <p>
-          <button type="button" class="btn btn-primary" onclick="showModal(`+data[i].id+`)" >
-            Launch demo modal
-          </button>
-        </p>
-      </div> `;
-    }
-    $("#book-list").html(html);
-    console.log(data);
-  });
+      $("#book-list").html("");
+
+      var html = "";
+      for(let i = 0; i < data.length; i++){
+        html += `
+        <div class="col-lg-4">
+          <h2>`+ data[i].title +`</h2>
+          <p>`+ data[i].release_date +`</p>
+          <p>
+              <button type="button" class="btn btn-primary book-button" onclick="showModal(`+data[i].id+`)" >
+              Launch demo modal
+            </button>
+          </p>
+        </div> `;
+      }
+      $("#book-list").html(html);
+      console.log(data);
+    });
+}
 
   function showModal(id){
-  $.get('rest/books/'+id, function(data){
-    console.log(data);
-    //$("#exampleModal .modal-body").html(id);
-    $("#release_date").val(data.release_date);
-    $("#exampleModal").modal("show");
-  })
-}
+    $('.book-button').attr('disabled', true);
+    $.get('rest/books/'+id, function(data){
+      console.log(data);
+      $("#id").val(data.id);
+      $("#num_pages").val(data.num_pages);
+      $("#author_id").val(data.author_id);
+      $("#publication").val(data.publication);
+      $("#language").val(data.language);
+      $("#source").val(data.source);
+      $("#title").val(data.title);
+      $("#release_date").val(data.release_date);
+      $("#exampleModal").modal("show");
+      $('.book-button').attr('disabled', false);
+    })
+  }
+
+  function saveBook(){
+    $('.save-book-button').attr('disabled', true);
+    var book = {};
+
+    book.title = $('#title').val();
+    book.num_pages = $('#num_pages').val();
+    book.author_id = $('#author_id').val();
+    book.publication = $('#publication').val();
+    book.language = $('#language').val();
+    book.source = $('#source').val();
+    book.release_date = $('#release_date').val();
+
+    $.ajax({
+      url: 'rest/books/'+$('#id').val(),
+      type: 'PUT',
+      data: JSON.stringify(book),
+      contentType: "application/json",
+      dataType: "json",
+      success: function(result) {
+          $("#exampleModal").modal("hide");
+          $('.save-book-button').attr('disabled', false);
+          $("#book-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
+          getBooks();
+      },
+      error: function(result){
+        alert(result.responseText);
+        $('.save-book-button').attr('disabled', false);
+      }
+    });
+
+    console.log(book);
+  }
 </script>
 
 <!-- Modal -->
@@ -93,11 +138,32 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <input id="release_date" type="text" />
+        <!-- id -->
+        <input id="id" type="hidden" class='row' />
+        <!-- num_pages -->
+        <input id="num_pages" type="hidden" class='row' />
+        <!-- author_id -->
+        <input id="author_id" type="hidden" class='row' />
+        <!-- publication -->
+        <input id="publication" type="hidden" class='row' />
+        <!-- language -->
+        <input id="language" type="hidden" class='row' />
+        <!-- source -->
+        <input id="source" type="hidden" class='row' />
+        <!-- title -->
+        <div class = 'form-group'>
+          <label>Title</label>
+          <input id="title" type="text" class='form-control' />
+        </div>
+        <!-- release_date -->
+        <div class = 'form-group'>
+          <label>Release Date</label>
+          <input id="release_date" type="datetime" class='form-control' />
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary save-book-button" onclick="saveBook()">Save changes</button>
       </div>
     </div>
   </div>

@@ -39,6 +39,11 @@
   <main>
     <div class="container marketing" style="margin-top:100px;">
       <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div>
+          <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#addBookModal">Add Book</button>
+        </div>
+      </div>
       <div id="book-list" class="row">
         <div class="spinner-border" role="status">
           <span class="sr-only"></span>
@@ -127,6 +132,40 @@
 
     console.log(book);
   }
+
+  function addBook(){
+    console.log("Save book")
+
+    var book = {};
+
+    book.title = $('#add_title').val();
+    book.num_pages = $('#add_num_pages').val();
+    book.author_id = $('#add_author_id').val();
+    book.publication = $('#add_publication').val();
+    book.language = $('#add_language').val();
+    book.source = $('#add_source').val();
+    book.release_date = $('#add_release_date').val();
+
+        $.ajax({
+          url: 'rest/books/',
+          type: 'POST',
+          data: JSON.stringify(book),
+          contentType: "application/json",
+          dataType: "json",
+          success: function(result) {
+              $("#book-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
+              getBooks();
+              $("#addBookModal").modal("hide");
+          },
+          error: function(result){
+            alert(result.responseText);
+            $('.save-book-button').attr('disabled', false);
+          }
+        });
+
+
+  }
+
 </script>
 
 <!-- Modal -->
@@ -168,5 +207,59 @@
     </div>
   </div>
 </div>
+
+<!-- Add Modal -->
+<div class="modal fade" id="addBookModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Book</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- num_pages -->
+        <div class = 'form-group'>
+          <label>Number of Pages</label>
+        <input id="add_num_pages" type="number" class='form-control' />
+      </div>
+        <!-- author_id -->
+        <div class = 'form-group'>
+          <label>Author ID</label>
+        <input id="add_author_id" type="number" class='form-control' />
+      </div>
+        <!-- publication -->
+        <div class = 'form-group'>
+          <label>Publication</label>
+        <input id="add_publication" type="text" class='form-control' />
+      </div>
+        <!-- language -->
+        <div class = 'form-group'>
+          <label>Language</label>
+        <input id="add_language" type="text" class='form-control' />
+      </div>
+        <!-- source -->
+        <div class = 'form-group'>
+          <label>Source</label>
+        <input id="add_source" type="text" class='form-control' />
+      </div>
+        <!-- title -->
+        <div class = 'form-group'>
+          <label>Title</label>
+          <input id="add_title" type="text" class='form-control' />
+        </div>
+        <!-- release_date -->
+        <div class = 'form-group'>
+          <label>Release Date</label>
+          <input id="add_release_date" type="date" class='form-control' />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary save-book-button" onclick="addBook()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 </html>

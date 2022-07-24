@@ -83,7 +83,7 @@ class UI {
     if ($('#userCanvasToggler').attr('aria-expanded') == 'true') {
       // console.log('collapse: ' + $('#userCanvasToggler').attr('aria-expanded'));
 
-      $('#userCanvas').attr('class', 'offcanvas-lg offcanvas-end');
+      $('#userCanvas').attr('class', 'offcanvas-lg');
       $('#userCanvasBackdrop').attr('class', '');
       $('#userCanvasToggler').attr('aria-expanded', 'false');
     }

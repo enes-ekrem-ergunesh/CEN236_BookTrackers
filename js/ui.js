@@ -6,7 +6,7 @@ class UI {
   }
 
   static token_check() {    
-    var token = localStorage.getItem("bookTrackers_userToken");
+    var token = localStorage.getItem("token");
     if(token) {
       $('#userCanvasBodyContainer').html(`
       

@@ -1,265 +1,174 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>BookTrackers App</title>
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./css/bootstrap.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <title>Document</title>
+
+
 </head>
 
 <body>
+
   <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Carousel</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-xxl bd-gutter flex-wrap flex-lg-nowrap">
+
+        <button name="Navbar Toggler" id="navbarToggler" class="navbar-toggler" type="button" data-bs-target="#"
+          onclick="UI.navbar_toggle();" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
+
+        <a name="App Title" class="navbar-brand" href="#">
+          <img src="https://i.pinimg.com/originals/e5/d5/c4/e5d5c4b5acb462a4080d3bf6f5f11652.jpg" alt="" width="30"
+            height="30" class="d-inline-block align-text-top">
+          BookTrackers
+        </a>
+
+        <button name="User Canvas Toggler" id="userCanvasToggler" class="navbar-toggler" type="button"
+          aria-expanded="false" aria-label="Toggle navigation" onclick="UI.user_canvas_toggle();">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor"
+            class="bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+            <path fill-rule="evenodd"
+              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z">
+            </path>
+          </svg>
+        </button>
+
+        <div name="Collapsable Navbar" class="collapse navbar-collapse" id="collapsableNavbar">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
+
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
+
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="./about us/">About us</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
+
           </ul>
-          <form class="d-flex">
+
+          <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
+
         </div>
+
       </div>
     </nav>
   </header>
 
   <main>
-    <div class="container marketing" style="margin-top:100px;">
-      <!-- Three columns of text below the carousel -->
+    <div class="container-xxl bd-gutter flex-wrap flex-lg-nowrap mt-3 my-md-4">
       <div class="row">
-        <div>
-          <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#addBookModal">Add Book</button>
-        </div>
-      </div>
-      <div id="book-list" class="row">
-        <div class="spinner-border" role="status">
-          <span class="sr-only"></span>
-        </div>
-      </div><!-- /.row -->
-    </div>
 
+        <div name="Main Col" class="col">
+          <main>
+            <div name="Books Container (explore)" class="container">
+              <div name="Books (explore)" class="row">
+          
+                <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-xxl-3">
+                  <div class="card">
+                    
+                    <a href="#book">
+                      <img src="https://images-na.ssl-images-amazon.com/images/I/41gr3r3FSWL._SX342_SY445_QL70_ML2_.jpg"
+                        class="card-img-top" alt="Book Cover">
+                    </a>
+          
+                    <div class="container">
+                      <div class="row justify-content-end align-items-end" style="padding: 1em; padding-bottom:0; padding-right:0.3em;">
+          
+                        <a class="list-group-item" href="#book" style="padding-right:0.7em;">
+                          <h6 class="card-title">War and Peace</h6>
+                        </a>
+          
+                        <a class="list-group-item" href="#author" style="padding-right:0.7em;">
+                          <p style="font-size:14px;">Leo Tolstoy</p>
+                        </a>
+            
+                        <a href="#add" class="list-group-item" style="width:fit-content; height:fit-content; position:absolute; padding-bottom:0.3em;">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16" width="21" height="21">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+                          </svg>
+                        </a>
+          
+                      </div>
+                    </div>
+          
+                  </div>
+                </div>
+          
+              </div>
+            </div>
+          
+
+          </main>
+        </div>
+
+        <div name="User Canvas Col" class="col-0 col-md-none col-lg-4" style="border-left: 1px solid #888;">
+          <aside>
+            <div name="User Canvas" id="userCanvas" class="offcanvas-lg offcanvas-end"
+              aria-labelledby="bdSidebarOffcanvasLabel">
+              <div class="offcanvas-header border-bottom">
+                <h5 class="offcanvas-title" id="bdSidebarOffcanvasLabel">Account</h5>
+                <button type="button" class="btn-close" onclick="UI.user_canvas_toggle();"></button>
+              </div>
+              <div name="User Canvas Body" id="UserCanvasBody" class="offcanvas-body">
+
+                <div name="User Canvas Body Container" id="userCanvasBodyContainer" class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-10 text-center">
+                      <img class="img-fluid" alt="Profile Photo" style="max-height: 15rem;"
+                        src="https://htmlstream.com/preview/unify-v2.6.1/assets/img-temp/400x450/img5.jpg">
+                    </div>
+                  </div>
+                  <div class="row justify-content-center my-3">
+                    <div class="col-10 text-center">
+                      <h3>Name Surname</h3>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center">
+                    <div class="col-10">
+                      <div class="list-group">
+                        <a style="border: none;" href="./my shelf/" class="list-group-item list-group-item-action">My Shelf</a>
+                        <a style="border: none;" href="./account settings/" class="list-group-item list-group-item-action">Account
+                          Settings</a>
+                        <a style="border: none; color: red;" href="#"
+                          class="list-group-item list-group-item-action">Logout</a>
+                      </div>
+              
+                    </div>
+                  </div>
+              
+                </div>
+
+              </div>
+            </div>
+            <div id="userCanvasBackdrop" class="" onclick="UI.user_canvas_toggle();"></div>
+          </aside>
+        </div>
+
+      </div>
+    </div>
   </main>
+
+
+
+
+
+  <script src="./js/bootstrap.bundle.js"></script>
+  <script src="./js/bootstrap.min.js"></script>
+  <script src="./js/jquery-3.6.0.min.js"></script>
+  <script src="./js/jquery.validate.min.js"></script>
+  <script src="./js/ui.js"></script>
+  <script>
+    UI.init_listeners();
+  </script>
 </body>
-<script src="js/jquery-3.6.0.min.js"></script>
-<script src="js\bootstrap.bundle.min.js"></script>
-
-<script>
-  // ajax get request from API
-  getBooks();
-
-  function getBooks(){
-    $.get("rest/books", function(data) {
-
-      $("#book-list").html("");
-
-      var html = "";
-      for(let i = 0; i < data.length; i++){
-        html += `
-        <div class="col-lg-4">
-          <h2>`+ data[i].title +`</h2>
-          <p>`+ data[i].release_date +`</p>
-          <p>
-              <button type="button" class="btn btn-primary book-button" onclick="showModal(`+data[i].id+`)" >
-              Launch demo modal
-            </button>
-          </p>
-        </div> `;
-      }
-      $("#book-list").html(html);
-      console.log(data);
-    });
-}
-
-  function showModal(id){
-    $('.book-button').attr('disabled', true);
-    $.get('rest/books/'+id, function(data){
-      console.log(data);
-      $("#id").val(data.id);
-      $("#num_pages").val(data.num_pages);
-      $("#author_id").val(data.author_id);
-      $("#publication").val(data.publication);
-      $("#language").val(data.language);
-      $("#source").val(data.source);
-      $("#title").val(data.title);
-      $("#release_date").val(data.release_date);
-      $("#exampleModal").modal("show");
-      $('.book-button').attr('disabled', false);
-    })
-  }
-
-  function saveBook(){
-    $('.save-book-button').attr('disabled', true);
-    var book = {};
-
-    book.title = $('#title').val();
-    book.num_pages = $('#num_pages').val();
-    book.author_id = $('#author_id').val();
-    book.publication = $('#publication').val();
-    book.language = $('#language').val();
-    book.source = $('#source').val();
-    book.release_date = $('#release_date').val();
-
-    $.ajax({
-      url: 'rest/books/'+$('#id').val(),
-      type: 'PUT',
-      data: JSON.stringify(book),
-      contentType: "application/json",
-      dataType: "json",
-      success: function(result) {
-          $("#exampleModal").modal("hide");
-          $('.save-book-button').attr('disabled', false);
-          $("#book-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
-          getBooks();
-      },
-      error: function(result){
-        alert(result.responseText);
-        $('.save-book-button').attr('disabled', false);
-      }
-    });
-
-    console.log(book);
-  }
-
-  function addBook(){
-    console.log("Save book")
-
-    var book = {};
-
-    book.title = $('#add_title').val();
-    book.num_pages = $('#add_num_pages').val();
-    book.author_id = $('#add_author_id').val();
-    book.publication = $('#add_publication').val();
-    book.language = $('#add_language').val();
-    book.source = $('#add_source').val();
-    book.release_date = $('#add_release_date').val();
-
-        $.ajax({
-          url: 'rest/books/',
-          type: 'POST',
-          data: JSON.stringify(book),
-          contentType: "application/json",
-          dataType: "json",
-          success: function(result) {
-              $("#book-list").html('<div class="spinner-border" role="status"> <span class="sr-only"></span>  </div>');
-              getBooks();
-              $("#addBookModal").modal("hide");
-          },
-          error: function(result){
-            alert(result.responseText);
-            $('.save-book-button').attr('disabled', false);
-          }
-        });
-
-
-  }
-
-</script>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- id -->
-        <input id="id" type="hidden" class='row' />
-        <!-- num_pages -->
-        <input id="num_pages" type="hidden" class='row' />
-        <!-- author_id -->
-        <input id="author_id" type="hidden" class='row' />
-        <!-- publication -->
-        <input id="publication" type="hidden" class='row' />
-        <!-- language -->
-        <input id="language" type="hidden" class='row' />
-        <!-- source -->
-        <input id="source" type="hidden" class='row' />
-        <!-- title -->
-        <div class = 'form-group'>
-          <label>Title</label>
-          <input id="title" type="text" class='form-control' />
-        </div>
-        <!-- release_date -->
-        <div class = 'form-group'>
-          <label>Release Date</label>
-          <input id="release_date" type="datetime" class='form-control' />
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary save-book-button" onclick="saveBook()">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Add Modal -->
-<div class="modal fade" id="addBookModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Book</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- num_pages -->
-        <div class = 'form-group'>
-          <label>Number of Pages</label>
-        <input id="add_num_pages" type="number" class='form-control' />
-      </div>
-        <!-- author_id -->
-        <div class = 'form-group'>
-          <label>Author ID</label>
-        <input id="add_author_id" type="number" class='form-control' />
-      </div>
-        <!-- publication -->
-        <div class = 'form-group'>
-          <label>Publication</label>
-        <input id="add_publication" type="text" class='form-control' />
-      </div>
-        <!-- language -->
-        <div class = 'form-group'>
-          <label>Language</label>
-        <input id="add_language" type="text" class='form-control' />
-      </div>
-        <!-- source -->
-        <div class = 'form-group'>
-          <label>Source</label>
-        <input id="add_source" type="text" class='form-control' />
-      </div>
-        <!-- title -->
-        <div class = 'form-group'>
-          <label>Title</label>
-          <input id="add_title" type="text" class='form-control' />
-        </div>
-        <!-- release_date -->
-        <div class = 'form-group'>
-          <label>Release Date</label>
-          <input id="add_release_date" type="date" class='form-control' />
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary save-book-button" onclick="addBook()">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 </html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <title>Document</title>
+
+
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-xxl bd-gutter flex-wrap flex-lg-nowrap">
+
+        <button name="Navbar Toggler" id="navbarToggler" class="navbar-toggler" type="button" data-bs-target="#"
+          onclick="UI.navbar_toggle();" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a name="App Title" class="navbar-brand" href="../">
+          <img src="https://i.pinimg.com/originals/e5/d5/c4/e5d5c4b5acb462a4080d3bf6f5f11652.jpg" alt="" width="30"
+            height="30" class="d-inline-block align-text-top">
+          BookTrackers
+        </a>
+
+        <button name="User Canvas Toggler" id="userCanvasToggler" class="navbar-toggler" type="button"
+          aria-expanded="false" aria-label="Toggle navigation" onclick="UI.user_canvas_toggle();">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor"
+            class="bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+            <path fill-rule="evenodd"
+              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z">
+            </path>
+          </svg>
+        </button>
+
+        <div name="Collapsable Navbar" class="collapse navbar-collapse" id="collapsableNavbar">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">My Shelf</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="../account settings/">Account Settings</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="--bs-nav-link-hover-color: red;
+              --bs-nav-link-color: #ff5757cf;">Logout</a>
+            </li>
+
+          </ul>
+
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container-xxl bd-gutter flex-wrap flex-lg-nowrap mt-3 my-md-4">
+      <div class="row">
+
+        <div name="Main Col" class="col">
+          <main>
+
+            <div name="Books Container (shelf)" class="container">
+              <div name="Books (shelf)" class="row">
+          
+                <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-xxl-3">
+                  <div class="card">
+                    
+                    <a href="#book">
+                      <img src="https://images-na.ssl-images-amazon.com/images/I/41gr3r3FSWL._SX342_SY445_QL70_ML2_.jpg"
+                        class="card-img-top" alt="Book Cover">
+                    </a>
+          
+                    <div class="container">
+                      <div class="row justify-content-end align-items-end" style="padding: 1em; padding-bottom:0; padding-right:0.3em;">
+          
+                        <a class="list-group-item" href="#book" style="padding-right:0.7em;">
+                          <h6 class="card-title">War and Peace</h6>
+                        </a>
+          
+                        <a class="list-group-item" href="#author" style="padding-right:0.7em;">
+                          <p style="font-size:14px;">Leo Tolstoy</p>
+                        </a>
+            
+                        <a href="#delete" class="list-group-item" style="width:fit-content; height:fit-content; position:absolute; padding-bottom:0.3em; color:red;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                          </svg>
+                        </a>
+          
+                      </div>
+                    </div>
+          
+                  </div>
+                </div>
+          
+              </div>
+            </div>
+            
+          </main>
+        </div>
+
+        <div name="User Canvas Col" class="col-0 col-md-none col-lg-4" style="border-left: 1px solid #888;">
+          <aside>
+            <div name="User Canvas" id="userCanvas" class="offcanvas-lg offcanvas-end"
+              aria-labelledby="bdSidebarOffcanvasLabel">
+              <div class="offcanvas-header border-bottom">
+                <h5 class="offcanvas-title" id="bdSidebarOffcanvasLabel">Account</h5>
+                <button type="button" class="btn-close" onclick="UI.user_canvas_toggle();"></button>
+              </div>
+              <div name="User Canvas Body" id="UserCanvasBody" class="offcanvas-body">
+
+                <div name="User Canvas Body Container" class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-10 text-center">
+                      <img class="img-fluid" alt="Profile Photo" style="max-height: 15rem;"
+                        src="https://htmlstream.com/preview/unify-v2.6.1/assets/img-temp/400x450/img5.jpg">
+                    </div>
+                  </div>
+                  <div class="row justify-content-center my-3">
+                    <div class="col-10 text-center">
+                      <h3>Name Surname</h3>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center">
+                    <div class="col-10">
+                      <div class="list-group">
+                        <a style="border: none;" href="#" class="list-group-item list-group-item-action">My Shelf</a>
+                        <a style="border: none;" href="../account settings/" class="list-group-item list-group-item-action">Account
+                          Settings</a>
+                        <a style="border: none; color: red;" href="#"
+                          class="list-group-item list-group-item-action">Logout</a>
+                      </div>
+              
+                    </div>
+                  </div>
+              
+                </div>
+
+              </div>
+            </div>
+            <div id="userCanvasBackdrop" class="" onclick="UI.user_canvas_toggle();"></div>
+          </aside>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+
+
+
+
+  <script src="../js/bootstrap.bundle.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <script src="../js/jquery-3.6.0.min.js"></script>
+  <script src="../js/jquery.validate.min.js"></script>
+  <script src="../js/ui.js"></script>
+  <script>
+    UI.screen_size_change_listener();
+  </script>
+</body>
+
+</html>

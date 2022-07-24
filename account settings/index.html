@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <title>Document</title>
+
+
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-xxl bd-gutter flex-wrap flex-lg-nowrap">
+
+        <button name="Navbar Toggler" id="navbarToggler" class="navbar-toggler" type="button" data-bs-target="#"
+          onclick="UI.navbar_toggle();" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a name="App Title" class="navbar-brand" href="../">
+          <img src="https://i.pinimg.com/originals/e5/d5/c4/e5d5c4b5acb462a4080d3bf6f5f11652.jpg" alt="" width="30"
+            height="30" class="d-inline-block align-text-top">
+          BookTrackers
+        </a>
+
+        <button name="User Canvas Toggler" id="userCanvasToggler" class="navbar-toggler" type="button"
+          aria-expanded="false" aria-label="Toggle navigation" onclick="UI.user_canvas_toggle();">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor"
+            class="bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+            <path fill-rule="evenodd"
+              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z">
+            </path>
+          </svg>
+        </button>
+
+        <div name="Collapsable Navbar" class="collapse navbar-collapse" id="collapsableNavbar">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="../my shelf/">My Shelf</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Account Settings</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="--bs-nav-link-hover-color: red;
+              --bs-nav-link-color: #ff5757cf;">Logout</a>
+            </li>
+
+          </ul>
+
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container-xxl bd-gutter flex-wrap flex-lg-nowrap mt-3 my-md-4">
+      <div class="row">
+
+        <div name="Main Col" class="col">
+          <main>
+
+            <div name="Account Form Container" class="container">
+              <form name="Account Form" id="accountForm" class="row g-3 needs-validation" novalidate>
+          
+                <div name="Avatar Div" class="col-12 text-center">
+                  <label for="avatars" class="form-label" style="width:100%;">Avatar</label>
+                  <div class="btn-group" id="avatars">
+          
+                    <input name="avatar 1" id="avatar1" type="radio" class="btn-check" autocomplete="off" checked>
+                    <label class="btn btn-outline-info" for="avatar 1">
+                      <img name="Avatar button 1" id="avatarButton1" src="/../WebVS/assets/avatars/1.png" alt="" width="80rem" height="80rem"/>
+                    </label>
+          
+                    <input name="avatar 2" id="avatar2" type="radio" class="btn-check" autocomplete="off">
+                    <label class="btn btn-outline-info" for="avatar 2">
+                      <img name="Avatar button 2" id="avatarButton2" src="/../WebVS/assets/avatars/2.png" alt="" width="80rem" height="80rem"/>
+                    </label>
+          
+                    <input name="avatar 3" id="avatar3" type="radio" class="btn-check" autocomplete="off">
+                    <label class="btn btn-outline-info" for="avatar 3">
+                      <img name="Avatar button 3" id="avatarButton3" src="/../WebVS/assets/avatars/3.png" alt="" width="80rem" height="80rem"/>
+                    </label>
+          
+                    <input name="avatar 4" id="avatar4" type="radio" class="btn-check" autocomplete="off">
+                    <label class="btn btn-outline-info" for="avatar 4">
+                      <img name="Avatar button 4" id="avatarButton4" src="/../WebVS/assets/avatars/4.png" alt="" width="80rem" height="80rem"/>
+                    </label>
+          
+          
+                  </div>
+                  <input name="avatar_id" id="avatarID" class="my-0" type="number"
+                    style="visibility: hidden; width:100%; height:0;" value="1" required>
+                </div>
+          
+                <div name="First Name Div" class="col-md-6">
+                  <label for="formFirstName" class="form-label">First name</label>
+                  <input name="first_name" id="formFirstName" type="text" class="form-control" value="Mark" required>
+                </div>
+          
+                <div name="Last Name Div" class="col-md-6">
+                  <label for="formLastName" class="form-label">Last name</label>
+                  <input name="last_name" id="formLastName" type="text" class="form-control" value="Otto" required>
+                </div>
+          
+          
+                <div name="Email Div" class="col-md-6">
+                  <label for="formEmail" class="form-label">Email</label>
+                  <input name="email" id="formEmail" type="text" class="form-control" value="mark.otto@mymail.com" required>
+                </div>
+          
+                <div name="Password Div" class="col-md-6">
+                  <label for="formPassword" class="form-label">Password</label>
+                  <div class="input-group">
+                    <input name="password" id="formPassword" type="password" class="form-control" value="example password"
+                      disabled required>
+                    <button name="Edit Password Button" id="editPasswordButton" class="btn btn-outline-secondary" type="button"
+                      data-bs-toggle="modal" data-bs-target="#editPasswordModal" style="width:45%;">
+                      Edit Password
+                    </button>
+                  </div>
+                </div>
+          
+                <div name="Submit Div" class="col-12">
+                  <button class="btn btn-primary" type="submit">Save Changes</button>
+                </div>
+              </form>
+          
+            </div>
+          
+            <!-- Modal -->
+            <div id="editPasswordModal" class="modal fade" tabindex="-1" aria-labelledby="editPasswordModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">        
+          
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="editPasswordModalLabel">Edit Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+          
+                  <div class="modal-body">
+                    <form name="Edit Password Form" id="editPasswordForm" class="row g-3 needs-validation" novalidate>
+          
+                      <div name="Old Password Div" class="form-label">
+                        <label for="formOldPassword" class="form-label">Old Password</label>
+                        <div class="row">
+                          <div class="col-11" style="padding-right:0.2rem">
+          
+                            <input name="old_password" id="formOldPassword" type="password" class="form-control" required>
+                            <div id="formOldPasswordValid" class="valid-feedback">
+                              Looks good!
+                            </div>
+                            <div id="formOldPasswordInvalid" class="invalid-feedback">
+                              Invalid password!
+                            </div>
+          
+                          </div>
+                          <div class="col-1">
+                            <i name="Password show/hide toggler" id="formOldPasswordToggle" class="far fa-eye" style="margin-top:10px; cursor: pointer;"></i>
+                          </div>
+                        </div>
+                      </div>
+          
+                      <div name="New Password Div" class="form-label">
+                        <label for="formNewPassword" class="form-label">New Password</label>
+                        <div class="row">
+                          <div class="col-11" style="padding-right:0.2rem">
+          
+                            <input name="new_password" id="formNewPassword" type="password" class="form-control" required>
+                            <div id="formNewPasswordValid" class="valid-feedback">
+                              Looks good!
+                            </div>
+                            <div id="formNewPasswordInvalid" class="invalid-feedback">
+                              Invalid password!
+                            </div>
+          
+                          </div>
+                          <div class="col-1">
+                            <i name="Password show/hide toggler" id="formNewPasswordToggle" class="far fa-eye" style="margin-top:10px; cursor: pointer;"></i>
+                          </div>
+                        </div>
+                      </div>
+          
+                      <div name="Confirm Password Div" class="form-label">
+                        <label for="formConfirmPassword" class="form-label">Confirm Password</label>
+                        <div class="row">
+                          <div class="col-11" style="padding-right:0.2rem">
+          
+                            <input name="confirm_password" id="formConfirmPassword" type="password" class="form-control" required>
+                            <div id="formConfirmPasswordValid" class="valid-feedback">
+                              Looks good!
+                            </div>
+                            <div id="formConfirmPasswordInvalid" class="invalid-feedback">
+                              Invalid password!
+                            </div>
+          
+                          </div>
+                          <div class="col-1">
+                            <i name="Password show/hide toggler" id="formConfirmPasswordToggle" class="far fa-eye" style="margin-top:10px; cursor: pointer;"></i>
+                          </div>
+                        </div>
+                      </div>
+          
+                    </div>
+                    
+                    <div class="modal-footer">
+                      <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+                      <button class="btn btn-primary" type="submit">Save Changes</button>
+                    </form>
+                    </div>
+                </div>
+              </div>
+            </div>
+            
+          </main>
+        </div>
+
+        <div name="User Canvas Col" class="col-0 col-md-none col-lg-4" style="border-left: 1px solid #888;">
+          <aside>
+            <div name="User Canvas" id="userCanvas" class="offcanvas-lg offcanvas-end"
+              aria-labelledby="bdSidebarOffcanvasLabel">
+              <div class="offcanvas-header border-bottom">
+                <h5 class="offcanvas-title" id="bdSidebarOffcanvasLabel">Account</h5>
+                <button type="button" class="btn-close" onclick="UI.user_canvas_toggle();"></button>
+              </div>
+              <div name="User Canvas Body" id="UserCanvasBody" class="offcanvas-body">
+
+                <div name="User Canvas Body Container" class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-10 text-center">
+                      <img class="img-fluid" alt="Profile Photo" style="max-height: 15rem;"
+                        src="https://htmlstream.com/preview/unify-v2.6.1/assets/img-temp/400x450/img5.jpg">
+                    </div>
+                  </div>
+                  <div class="row justify-content-center my-3">
+                    <div class="col-10 text-center">
+                      <h3>Name Surname</h3>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center">
+                    <div class="col-10">
+                      <div class="list-group">
+                        <a style="border: none;" href="../my shelf/" class="list-group-item list-group-item-action">My Shelf</a>
+                        <a style="border: none;" href="#" class="list-group-item list-group-item-action">Account
+                          Settings</a>
+                        <a style="border: none; color: red;" href="#"
+                          class="list-group-item list-group-item-action">Logout</a>
+                      </div>
+              
+                    </div>
+                  </div>
+              
+                </div>
+
+              </div>
+            </div>
+            <div id="userCanvasBackdrop" class="" onclick="UI.user_canvas_toggle();"></div>
+          </aside>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+
+
+
+
+  <script src="../js/bootstrap.bundle.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <script src="../js/jquery-3.6.0.min.js"></script>
+  <script src="../js/jquery.validate.min.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="./self_ui.js"></script>
+  <script>
+    UI.screen_size_change_listener();
+    selfUI.init_listeners();
+  </script>
+</body>
+
+</html>

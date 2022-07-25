@@ -36,10 +36,11 @@ class UI {
 
       `);
     }
+    //<form id="login-form" name="Login Form" class="row g-3 needs-validation justify-content-center" novalidate>
     else{
       $('#userCanvasBodyContainer').html(`
       
-    <form name="Login Form" class="row g-3 needs-validation justify-content-center" novalidate>
+    <form id="login-form" name="Login Form" class="row g-3 justify-content-center">
 
     <div name="Email Div" class="col-lg-6">
       <label for="formEmail" class="form-label">Email</label>

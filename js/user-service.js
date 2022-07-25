@@ -1,5 +1,5 @@
 var UserService = {
-  init: function(){
+  init: function($current_dir){
     toastr.options = {
       "closeButton": true,
       "debug": false,
@@ -20,14 +20,14 @@ var UserService = {
     $('#login-form').validate({
       submitHandler: function(form) {
         var entity = Object.fromEntries((new FormData(form)).entries());
-        // console.log(entity);
-        UserService.login(entity);
+        // console.log('user: '+entity);
+        UserService.login(entity, $current_dir);
       }
     });
   },
-  login: function(entity){
+  login: function(entity, $current_dir){
     $.ajax({
-      url: 'rest/login',
+      url: $current_dir+'/rest/login',
       type: 'POST',
       data: JSON.stringify(entity),
       contentType: "application/json",
@@ -35,16 +35,16 @@ var UserService = {
       success: function(result) {
         console.log(result);
         localStorage.setItem("token", result.token);
+        UI.token_check($current_dir);
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
         toastr.error(XMLHttpRequest.responseJSON.message);
-        
       }
     });
   },
 
   logout: function(){
     localStorage.clear();
-    window.location.replace("login.html");
+    UI.token_check();
   },
 }

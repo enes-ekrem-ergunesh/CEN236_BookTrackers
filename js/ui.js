@@ -1,43 +1,56 @@
 class UI {
 
-  static init_listeners() {
-    this.token_check();
+  static init_listeners($current_dir) {
+    this.token_check($current_dir);
     this.screen_size_change_listener();
   }
 
-  static token_check() {    
+  static token_check($current_dir) {
     var token = localStorage.getItem("token");
-    if(token) {
-      $('#userCanvasBodyContainer').html(`
-      
-      <div class="row justify-content-center">
-      <div class="col-10 text-center">
-        <img class="img-fluid" alt="Profile Photo" style="max-height: 15rem;"
-          src="https://htmlstream.com/preview/unify-v2.6.1/assets/img-temp/400x450/img5.jpg">
-      </div>
-    </div>
-    <div class="row justify-content-center my-3">
-      <div class="col-10 text-center">
-        <h3>Name Surname</h3>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-10">
-        <div class="list-group">
-          <a style="border: none;" href="./my shelf/" class="list-group-item list-group-item-action">My Shelf</a>
-          <a style="border: none;" href="./account settings/" class="list-group-item list-group-item-action">Account
-            Settings</a>
-          <a style="border: none; color: red;" href="#"
-            class="list-group-item list-group-item-action">Logout</a>
+    if (token) {
+      $.ajax({
+        url: $current_dir+'/rest/current_user',
+        type: 'GET',
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
+        },
+        success: function (user) {
+          // console.log(user);
+          $('#userCanvasBodyContainer').html(`
+          
+          <div class="row justify-content-center">
+          <div class="col-10 text-center">
+            <img class="img-fluid" alt="Profile Photo" style="max-height: 8rem;"
+              src="`+$current_dir+`/assets/avatars/`+user.avatar_id+`.png">
+          </div>
         </div>
-
-      </div>
-    </div>
-
-      `);
+        <div class="row justify-content-center my-3">
+          <div class="col-10 text-center">
+            <h3>`+user.first_name+` `+user.last_name+`</h3>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-10">
+            <div class="list-group">
+              <a style="border: none;" href="./my shelf/" class="list-group-item list-group-item-action">My Shelf</a>
+              <a style="border: none;" href="./account settings/" class="list-group-item list-group-item-action">Account
+                Settings</a>
+              <a style="border: none; color: red;" href="" onclick="UserService.logout();" class="list-group-item list-group-item-action">Logout</a>
+            </div>
+    
+          </div>
+        </div>
+    
+          `);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          toastr.error(XMLHttpRequest.responseJSON.message);
+          UserService.logout();
+        }
+      });
     }
     //<form id="login-form" name="Login Form" class="row g-3 needs-validation justify-content-center" novalidate>
-    else{
+    else {
       $('#userCanvasBodyContainer').html(`
       
     <form id="login-form" name="Login Form" class="row g-3 justify-content-center">
@@ -63,7 +76,7 @@ class UI {
   </form>
 
       `);
-      
+
     }
   }
 
@@ -113,15 +126,15 @@ class UI {
       }
     }
 
-    function remove_user_canvas_backdrop() {      
+    function remove_user_canvas_backdrop() {
       var backdropClass = $('#userCanvasBackdrop').attr('class');
       var togglerClass = $('#userCanvasToggler').attr('aria-expanded');
-      if(togglerClass == 'true'){
-        if(backdropClass == 'offcanvas-backdrop fade show' && $(window).width() >= 992){
+      if (togglerClass == 'true') {
+        if (backdropClass == 'offcanvas-backdrop fade show' && $(window).width() >= 992) {
           $('#userCanvas').attr('class', 'offcanvas-lg offcanvas-end');
           $('#userCanvasBackdrop').attr('class', '');
         }
-        else if(backdropClass == '' && $(window).width() < 992){
+        else if (backdropClass == '' && $(window).width() < 992) {
           $('#userCanvas').attr('class', 'offcanvas-lg offcanvas-end show');
           $('#userCanvasBackdrop').attr('class', 'offcanvas-backdrop fade show');
         }

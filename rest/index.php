@@ -43,8 +43,7 @@ Flight::route('/*', function () {
     '/login',
     '/sign_up',
     '/docs.json',
-    '/publicbooks',
-    '/publicbooks/1'
+    '/publicbooks'
   );
   $publicPathsWithVariables = array(
     '/publicbooks/'

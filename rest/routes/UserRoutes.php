@@ -216,4 +216,26 @@ Flight::route('POST /sign_up', function(){
   }
 });
 
+/**
+  * @OA\GET(
+  *     path="/current_user",
+  *     description="Get current user information",
+  *     tags={"account"}, security={{"ApiKeyAuth": {}}},
+  *     @OA\Response(
+  *         response=200,
+  *         description="JWT Token on successful response"
+  *     ),
+  *     @OA\Response(
+  *         response=404,
+  *         description="Wrong Password | User doesn't exist"
+  *     )
+  * )
+*/
+Flight::route('GET /current_user', function(){
+  $user = Flight::get('user');
+  $test = "test";
+  Flight::json($user);
+  // echo "hello world";
+});
+
 ?>

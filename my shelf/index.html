@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
   <title>Document</title>
 
 
@@ -50,7 +51,7 @@
             </li>
             
             <li class="nav-item">
-              <a class="nav-link" href="#" style="--bs-nav-link-hover-color: red;
+              <a class="nav-link" href="../" onclick="localStorage.clear();" style="--bs-nav-link-hover-color: red;
               --bs-nav-link-color: #ff5757cf;">Logout</a>
             </li>
 
@@ -115,40 +116,16 @@
         </div>
 
         <div name="User Canvas Col" class="col-0 col-md-none col-lg-4" style="border-left: 1px solid #888;">
-          <aside>
+          <aside style="height: 100%;">
             <div name="User Canvas" id="userCanvas" class="offcanvas-lg offcanvas-end"
-              aria-labelledby="bdSidebarOffcanvasLabel">
+              aria-labelledby="bdSidebarOffcanvasLabel" style="transform: none; width: 100%; max-width: 400px; height: 100%;">
               <div class="offcanvas-header border-bottom">
                 <h5 class="offcanvas-title" id="bdSidebarOffcanvasLabel">Account</h5>
                 <button type="button" class="btn-close" onclick="UI.user_canvas_toggle();"></button>
               </div>
               <div name="User Canvas Body" id="UserCanvasBody" class="offcanvas-body">
 
-                <div name="User Canvas Body Container" class="container">
-                  <div class="row justify-content-center">
-                    <div class="col-10 text-center">
-                      <img class="img-fluid" alt="Profile Photo" style="max-height: 15rem;"
-                        src="https://htmlstream.com/preview/unify-v2.6.1/assets/img-temp/400x450/img5.jpg">
-                    </div>
-                  </div>
-                  <div class="row justify-content-center my-3">
-                    <div class="col-10 text-center">
-                      <h3>Name Surname</h3>
-                    </div>
-                  </div>
-                  <div class="row justify-content-center">
-                    <div class="col-10">
-                      <div class="list-group">
-                        <a style="border: none;" href="#" class="list-group-item list-group-item-action">My Shelf</a>
-                        <a style="border: none;" href="../account settings/" class="list-group-item list-group-item-action">Account
-                          Settings</a>
-                        <a style="border: none; color: red;" href="#"
-                          class="list-group-item list-group-item-action">Logout</a>
-                      </div>
-              
-                    </div>
-                  </div>
-              
+                <div name="User Canvas Body Container" id="userCanvasBodyContainer" class="container">
                 </div>
 
               </div>
@@ -169,9 +146,12 @@
   <script src="../js/bootstrap.min.js"></script>
   <script src="../js/jquery-3.6.0.min.js"></script>
   <script src="../js/jquery.validate.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   <script src="../js/ui.js"></script>
+  <script src="../js/user-service.js"></script>
   <script>
-    UI.screen_size_change_listener();
+    UI.init_listeners('..');
+    UserService.init('..');
   </script>
 </body>
 

@@ -3,6 +3,7 @@ class UI {
   static init_listeners($current_dir) {
     this.token_check($current_dir);
     this.screen_size_change_listener();
+    if($current_dir === '.') this.avatar_radio_button_onclick();
   }
 
   static token_check($current_dir) {
@@ -70,7 +71,7 @@ class UI {
     </div>
     
     <div name="SignUp Div" class="col-12 text-center" style="--bs-gutter-y: 0.3rem;">
-    <p style="font-size: 12px;">Forget your password? <a href="#signup">Sign Up</a></p>
+    <p style="font-size: 12px;">Forget your password? <a href="" data-bs-toggle="modal" data-bs-target="#signUpModal">Sign Up</a></p>
       
     </div>
   </form>
@@ -139,6 +140,64 @@ class UI {
           $('#userCanvasBackdrop').attr('class', 'offcanvas-backdrop fade show');
         }
       }
+    }
+
+  }
+  
+  static avatar_radio_button_onclick() {
+    const avatarButton1 = document.querySelector('#avatarButton1');
+
+    avatarButton1.onclick = () => {
+      this.avatar_radio_reselect(1);
+    }
+
+    const avatarButton2 = document.querySelector('#avatarButton2');
+
+    avatarButton2.onclick = () => {
+      this.avatar_radio_reselect(2);
+    }
+
+    const avatarButton3 = document.querySelector('#avatarButton3');
+
+    avatarButton3.onclick = () => {
+      this.avatar_radio_reselect(3);
+    }
+
+    const avatarButton4 = document.querySelector('#avatarButton4');
+
+    avatarButton4.onclick = () => {
+      this.avatar_radio_reselect(4);
+    }
+  }
+
+  static avatar_radio_reselect($id) {
+    $('#avatar1').removeAttr("checked");
+    $('#avatar2').removeAttr("checked");
+    $('#avatar3').removeAttr("checked");
+    $('#avatar4').removeAttr("checked");
+    switch ($id) {
+      case 1:
+        $('#avatar1').attr("checked", "");
+        $('#avatarID').attr("value", "1");
+        break;
+
+      case 2:
+        $('#avatar2').attr("checked", "");
+        $('#avatarID').attr("value", "2");
+        break;
+
+      case 3:
+        $('#avatar3').attr("checked", "");
+        $('#avatarID').attr("value", "3");
+        break;
+
+      case 4:
+        $('#avatar4').attr("checked", "");
+        $('#avatarID').attr("value", "4");
+        break;
+
+      default:
+        break;
     }
 
   }

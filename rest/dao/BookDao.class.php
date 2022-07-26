@@ -11,14 +11,18 @@ class BookDao extends BaseDao{
   }
 
   public function get_public_books(){
-    $query = "SELECT b.* FROM books b INNER JOIN users u ON b.user_id = u.id 
+    $query = "SELECT b.id, b.name, b.cover, b.source, b.author_id, a.name as author_name FROM books b 
+    INNER JOIN users u ON b.user_id = u.id 
+    INNER JOIN authors a ON b.author_id = a.id
     WHERE u.admin = 1 AND b.activity = 'active' ";
     
     return $this->query($query, null);
   }
   
   public function get_public_book($id){
-    $query = "SELECT b.* FROM books b INNER JOIN users u ON b.user_id = u.id 
+    $query = "SELECT b.id, b.name, b.cover, b.source, b.author_id, a.name as author_name FROM books b 
+    INNER JOIN users u ON b.user_id = u.id 
+    INNER JOIN authors a ON b.author_id = a.id
     WHERE u.admin = 1 AND b.activity = 'active' AND b.id = :id";
     
     return $this->query($query, ['id' => $id]);

@@ -70,9 +70,9 @@
         <div name="Main Col" class="col">
           <main>
             <div name="Books Container (explore)" class="container">
-              <div name="Books (explore)" class="row">
-
-                <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-xxl-3">
+              <div id="books-row" name="Books (explore)" class="row">
+<!-- 
+                <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-xxl-3 my-3">
                   <div class="card">
 
                     <a href="#book">
@@ -106,6 +106,13 @@
                       </div>
                     </div>
 
+                  </div>
+                </div> -->
+
+                <!-- Spinner -->
+                <div class="d-flex justify-content-center">
+                  <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
                   </div>
                 </div>
 
@@ -158,26 +165,26 @@
 
                   <input id="avatar1" type="radio" class="btn-check" autocomplete="off" checked>
                   <label class="btn btn-outline-info" for="avatar 1">
-                    <img name="Avatar button 1" id="avatarButton1" src="./assets/avatars/1.png" alt=""
-                      width="80rem" height="80rem" />
+                    <img name="Avatar button 1" id="avatarButton1" src="./assets/avatars/1.png" alt="" width="80rem"
+                      height="80rem" />
                   </label>
 
                   <input id="avatar2" type="radio" class="btn-check" autocomplete="off">
                   <label class="btn btn-outline-info" for="avatar 2">
-                    <img name="Avatar button 2" id="avatarButton2" src="./assets/avatars/2.png" alt=""
-                      width="80rem" height="80rem" />
+                    <img name="Avatar button 2" id="avatarButton2" src="./assets/avatars/2.png" alt="" width="80rem"
+                      height="80rem" />
                   </label>
 
                   <input id="avatar3" type="radio" class="btn-check" autocomplete="off">
                   <label class="btn btn-outline-info" for="avatar 3">
-                    <img name="Avatar button 3" id="avatarButton3" src="./assets/avatars/3.png" alt=""
-                      width="80rem" height="80rem" />
+                    <img name="Avatar button 3" id="avatarButton3" src="./assets/avatars/3.png" alt="" width="80rem"
+                      height="80rem" />
                   </label>
 
                   <input id="avatar4" type="radio" class="btn-check" autocomplete="off">
                   <label class="btn btn-outline-info" for="avatar 4">
-                    <img name="Avatar button 4" id="avatarButton4" src="./assets/avatars/4.png" alt=""
-                      width="80rem" height="80rem" />
+                    <img name="Avatar button 4" id="avatarButton4" src="./assets/avatars/4.png" alt="" width="80rem"
+                      height="80rem" />
                   </label>
 
 
@@ -199,14 +206,12 @@
 
               <div name="Email Div" class="col-md-6">
                 <label for="signup-form-email" class="form-label">Email</label>
-                <input name="email" id="signup-form-email" type="text" class="form-control"
-                required>
+                <input name="email" id="signup-form-email" type="text" class="form-control" required>
               </div>
 
               <div name="Password Div" class="col-md-6">
                 <label for="signup-form-email" class="form-label">Password</label>
-                <input name="password" id="signup-form-password" type="password" class="form-control"
-                  required>
+                <input name="password" id="signup-form-password" type="password" class="form-control" required>
               </div>
           </div>
           <div class="modal-footer">
@@ -219,20 +224,29 @@
     </div>
   </modals>
 
+  
 
-
-
-
-  <script src="./js/bootstrap.bundle.js"></script>
+  <script src="./js/popper.min.js"></script>
+  <script src="./js/bootstrap.bundle.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
+  <script src="./js/bootstrap.bundle.js"></script>
+  <script src="./js/bootstrap.js"></script>
   <script src="./js/jquery-3.6.0.min.js"></script>
   <script src="./js/jquery.validate.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   <script src="./js/ui.js"></script>
   <script src="./js/user-service.js"></script>
+  <script src="./js/book-service.js"></script>
   <script>
     UI.init_listeners('.');
     UserService.init('.');
+    BookService.init();
+
+    function enable_tooltips() {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    }
+
   </script>
 </body>
 

@@ -146,5 +146,17 @@ Flight::route('GET /publicbooks/@id', function($id){
   Flight::json(Flight::bookService()->get_public_book($id));
 });
 
+/**
+ * @OA\Get(path="/publicbooks_by_author/{id}", tags={"books"},
+ *     summary="Return public books of individual author from the API.",
+ *     @OA\Parameter(in="path", name="id", example=1, description="Id of author"),
+ *     @OA\Response(response="200", description="Fetch individual book")
+ * )
+ */
+Flight::route('GET /publicbooks_by_author/@id', function($id){
+  Flight::json(Flight::bookService()->get_public_books_by_author($id));
+});
+
+
 
 ?>

@@ -3,12 +3,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="./css/bootstrap.css">
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
   <title>BookTrackers</title>
-
-
 </head>
 
 <body>
@@ -22,7 +20,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <a name="App Title" class="navbar-brand" href="">
+        <a name="App Title" class="navbar-brand" href="../">
           <img src="https://i.pinimg.com/originals/e5/d5/c4/e5d5c4b5acb462a4080d3bf6f5f11652.jpg" alt="" width="30"
             height="30" class="d-inline-block align-text-top">
           BookTrackers
@@ -43,11 +41,11 @@
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
 
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="../">Home</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="./about us/">About us</a>
+              <a class="nav-link" href="../about us/">About us</a>
             </li>
 
           </ul>
@@ -165,25 +163,25 @@
 
                   <input id="avatar1" type="radio" class="btn-check" autocomplete="off" checked>
                   <label class="btn btn-outline-info" for="avatar 1">
-                    <img name="Avatar button 1" id="avatarButton1" src="./assets/avatars/1.png" alt="" width="80rem"
+                    <img name="Avatar button 1" id="avatarButton1" src="../assets/avatars/1.png" alt="" width="80rem"
                       height="80rem" />
                   </label>
 
                   <input id="avatar2" type="radio" class="btn-check" autocomplete="off">
                   <label class="btn btn-outline-info" for="avatar 2">
-                    <img name="Avatar button 2" id="avatarButton2" src="./assets/avatars/2.png" alt="" width="80rem"
+                    <img name="Avatar button 2" id="avatarButton2" src="../assets/avatars/2.png" alt="" width="80rem"
                       height="80rem" />
                   </label>
 
                   <input id="avatar3" type="radio" class="btn-check" autocomplete="off">
                   <label class="btn btn-outline-info" for="avatar 3">
-                    <img name="Avatar button 3" id="avatarButton3" src="./assets/avatars/3.png" alt="" width="80rem"
+                    <img name="Avatar button 3" id="avatarButton3" src="../assets/avatars/3.png" alt="" width="80rem"
                       height="80rem" />
                   </label>
 
                   <input id="avatar4" type="radio" class="btn-check" autocomplete="off">
                   <label class="btn btn-outline-info" for="avatar 4">
-                    <img name="Avatar button 4" id="avatarButton4" src="./assets/avatars/4.png" alt="" width="80rem"
+                    <img name="Avatar button 4" id="avatarButton4" src="../assets/avatars/4.png" alt="" width="80rem"
                       height="80rem" />
                   </label>
 
@@ -226,23 +224,23 @@
 
   
 
-  <script src="./js/popper.min.js"></script>
-  <script src="./js/bootstrap.bundle.min.js"></script>
-  <script src="./js/bootstrap.min.js"></script>
-  <script src="./js/bootstrap.bundle.js"></script>
-  <script src="./js/bootstrap.js"></script>
-  <script src="./js/jquery-3.6.0.min.js"></script>
-  <script src="./js/jquery.validate.min.js"></script>
+  <script src="../js/popper.min.js"></script>
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <script src="../js/bootstrap.bundle.js"></script>
+  <script src="../js/bootstrap.js"></script>
+  <script src="../js/jquery-3.6.0.min.js"></script>
+  <script src="../js/jquery.validate.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-  <script src="./js/ui.js"></script>
-  <script src="./js/user-service.js"></script>
-  <script src="./js/book-service.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/user-service.js"></script>
+  <script src="../js/book-service.js"></script>
   <script>
-    var current_dir = '.';
+    var current_dir = '..';
     UI.init_listeners(current_dir);
     UserService.init(current_dir);
     BookService.init();
-    BookService.list_home(current_dir);
+    BookService.list_author(current_dir);
 
     function enable_tooltips() {
       const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
@@ -251,4 +249,5 @@
 
   </script>
 </body>
+
 </html>

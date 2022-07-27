@@ -69,7 +69,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#" style="--bs-nav-link-hover-color: red;
+              <a class="nav-link" href="" onclick="UserService.logout();" style="--bs-nav-link-hover-color: red;
               --bs-nav-link-color: #ff5757cf;">Logout</a>
             </li>
 
@@ -446,6 +446,84 @@
     </div>
   </main>
 
+  
+  <modals>
+    <!-- Modal -->
+    <div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="signUpModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="signUpModalLabel">Sign up</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form name="Account Form" id="signup-form" class="row g-3 needs-validation" novalidate>
+
+              <div name="Avatar Div" class="col-12 text-center">
+                <label for="avatars" class="form-label" style="width:100%;">Avatar</label>
+                <div class="btn-group" id="avatars">
+
+                  <input id="avatar1" type="radio" class="btn-check" autocomplete="off" checked>
+                  <label class="btn btn-outline-info" for="avatar 1">
+                    <img name="Avatar button 1" id="avatarButton1" src="../assets/avatars/1.png" alt="" width="80rem"
+                      height="80rem" />
+                  </label>
+
+                  <input id="avatar2" type="radio" class="btn-check" autocomplete="off">
+                  <label class="btn btn-outline-info" for="avatar 2">
+                    <img name="Avatar button 2" id="avatarButton2" src="../assets/avatars/2.png" alt="" width="80rem"
+                      height="80rem" />
+                  </label>
+
+                  <input id="avatar3" type="radio" class="btn-check" autocomplete="off">
+                  <label class="btn btn-outline-info" for="avatar 3">
+                    <img name="Avatar button 3" id="avatarButton3" src="../assets/avatars/3.png" alt="" width="80rem"
+                      height="80rem" />
+                  </label>
+
+                  <input id="avatar4" type="radio" class="btn-check" autocomplete="off">
+                  <label class="btn btn-outline-info" for="avatar 4">
+                    <img name="Avatar button 4" id="avatarButton4" src="../assets/avatars/4.png" alt="" width="80rem"
+                      height="80rem" />
+                  </label>
+
+
+                </div>
+                <input name="avatar_id" id="avatarID" class="my-0" type="number"
+                  style="visibility: hidden; width:100%; height:0;" value="1" required>
+              </div>
+
+              <div name="First Name Div" class="col-md-6">
+                <label for="formFirstName" class="form-label">First name</label>
+                <input name="first_name" id="formFirstName" type="text" class="form-control" required>
+              </div>
+
+              <div name="Last Name Div" class="col-md-6">
+                <label for="formLastName" class="form-label">Last name</label>
+                <input name="last_name" id="formLastName" type="text" class="form-control" required>
+              </div>
+
+
+              <div name="Email Div" class="col-md-6">
+                <label for="signup-form-email" class="form-label">Email</label>
+                <input name="email" id="signup-form-email" type="text" class="form-control" required>
+              </div>
+
+              <div name="Password Div" class="col-md-6">
+                <label for="signup-form-email" class="form-label">Password</label>
+                <input name="password" id="signup-form-password" type="password" class="form-control" required>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </modals>
+
 
 
 
@@ -455,13 +533,16 @@
   <script src="../js/jquery-3.6.0.min.js"></script>
   <script src="../js/jquery.validate.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  <script src="../js/user-service.js"></script>
   <script src="../js/book-service.js"></script>
   <script src="../js/ui.js"></script>
   <script src="./self_ui.js"></script>
   <script>
-    UI.init_listeners('..');
+    var current_dir = '..';
+    UI.init_listeners(current_dir);
+    UserService.init(current_dir);
     selfUI.init_listeners();
-    BookService.set_reader();
+    BookService.set_reader(current_dir);
   </script>
 </body>
 

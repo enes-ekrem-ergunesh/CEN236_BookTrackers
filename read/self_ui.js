@@ -120,7 +120,7 @@ class selfUI {
 
               // add chapter heading to contents
               html_chap += `
-              <a class="nav-link" href="#chapter-`+ chap_counter + `">` + pages[0] + `</a>
+              <a class="nav-link" href="#chapter-`+ chap_counter + `" onclick="localStorage.setItem('page_change', '1'); selfUI.on_content_click();">` + pages[0] + `</a>
               `;
 
               // add page group to contents
@@ -236,14 +236,30 @@ class selfUI {
   static on_book_scroll() {
     if (localStorage.getItem("page_change") === '1') localStorage.setItem("page_change", '0');
     else {
-      for (var i = 0; i < document.getElementsByName("Page Heading").length; i++) {
-        if (document.getElementsByName("Page Heading")[i].getAttribute("class") == "active") {
-          // set value to active page
-          document.getElementById('page-selector-input').value = (i + 1);
-        }
+      selfUI.go_to_active_page();
+    }
+  }
+
+  static go_to_active_page() {
+    for (var i = 0; i < document.getElementsByName("Page Heading").length; i++) {
+      if (document.getElementsByName("Page Heading")[i].getAttribute("class") == "active") {
+        // set value to active page
+        document.getElementById('page-selector-input').value = (i + 1);
       }
     }
   }
 
+  static on_content_click() {
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function click(){
+      await sleep(200);
+      selfUI.go_to_active_page();
+    }
+
+    click();    
+  }
 
 }

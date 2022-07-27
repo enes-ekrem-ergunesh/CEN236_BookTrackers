@@ -19,6 +19,14 @@ class BookService extends BaseService{
       return $result;
     }
   }
+  
+  public function get_public_books_by_author($id){
+    $result = $this->dao->get_public_books_by_author($id);
+    if(empty($result)) return null;
+    else{
+      return $result;
+    }
+  }
 
 }
 ?>

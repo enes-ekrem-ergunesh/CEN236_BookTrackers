@@ -46,7 +46,8 @@ Flight::route('/*', function () {
     '/publicbooks'
   );
   $publicPathsWithVariables = array(
-    '/publicbooks/'
+    '/publicbooks/',
+    '/publicbooks_by_author/'
   );
 
   // check public routes with variables

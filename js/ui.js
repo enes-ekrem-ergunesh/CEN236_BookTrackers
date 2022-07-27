@@ -3,7 +3,8 @@ class UI {
   static init_listeners($current_dir) {
     this.token_check($current_dir);
     this.screen_size_change_listener();
-    if($current_dir === '.') this.avatar_radio_button_onclick();
+    // if($current_dir === '.') this.avatar_radio_button_onclick();
+    this.avatar_radio_button_onclick();
   }
 
   static token_check($current_dir) {
@@ -33,8 +34,8 @@ class UI {
         <div class="row justify-content-center">
           <div class="col-10">
             <div class="list-group">
-              <a style="border: none;" href="./my shelf/" class="list-group-item list-group-item-action">My Shelf</a>
-              <a style="border: none;" href="./account settings/" class="list-group-item list-group-item-action">Account
+              <a style="border: none;" href="`+$current_dir+`/my shelf/" class="list-group-item list-group-item-action">My Shelf</a>
+              <a style="border: none;" href="`+$current_dir+`/account settings/" class="list-group-item list-group-item-action">Account
                 Settings</a>
               <a style="border: none; color: red;" href="" onclick="UserService.logout();" class="list-group-item list-group-item-action">Logout</a>
             </div>
@@ -67,7 +68,7 @@ class UI {
     </div>
 
     <div name="Submit Div" class="col-6">
-      <button class="btn btn-primary" type="submit" style="width: 100%;">Save Changes</button>
+      <button class="btn btn-primary" type="submit" style="width: 100%;">Sign in</button>
     </div>
     
     <div name="SignUp Div" class="col-12 text-center" style="--bs-gutter-y: 0.3rem;">

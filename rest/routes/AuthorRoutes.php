@@ -113,4 +113,17 @@ Flight::route('DELETE /authors/@id', function($id){
   Flight::json(["message" => "deleted"]);
 });
 
+
+
+/**
+ * @OA\Get(path="/publicauthors/{id}", tags={"authors"},
+ *     summary="Return Individual publicauthors from the API.", 
+ *     @OA\Parameter(in="path", name="id", example=1, description="Id of author"),
+ *     @OA\Response(response="200", description="Fetch individual author")
+ * )
+ */
+Flight::route('GET /publicauthors/@id', function($id){
+  Flight::json(Flight::authorService()->get_public_author($id));
+});
+
 ?>

@@ -67,9 +67,39 @@
 
         <div name="Main Col" class="col">
           <main>
+
+            <section name="Author Section" class="text-center container" style="border-bottom: 1px solid rgb(0 0 0 / 21%);"><br>
+              <div id="author-body" class="row py-lg-1 align-items-center" style="margin-bottom: 1rem;">
+                <div class="col-md-4 mx-auto" aria-hidden="true">
+                  <div class="row justify-content-center">
+                    <div class="col" style="max-width: 18rem;">
+                      <svg class="rounded bd-placeholder-img placeholder-wave" width="100%" height="180"
+                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
+                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="15rem" fill="#868e96"></rect>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-8 mx-auto">
+
+                  <h1 class="card-title placeholder-wave">
+                    <span class="placeholder col-4"></span>
+                  </h1>
+                  <p class="placeholder-wave">
+                    <span class="placeholder col-10 bg-secondary"></span>
+                    <span class="placeholder col-11 bg-secondary"></span>
+                    <span class="placeholder col-9 bg-secondary"></span>
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            
             <div name="Books Container (explore)" class="container">
               <div id="books-row" name="Books (explore)" class="row">
-<!-- 
+                <!-- 
                 <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-xxl-3 my-3">
                   <div class="card">
 
@@ -116,8 +146,6 @@
 
               </div>
             </div>
-
-
           </main>
         </div>
 
@@ -222,7 +250,7 @@
     </div>
   </modals>
 
-  
+
 
   <script src="../js/popper.min.js"></script>
   <script src="../js/bootstrap.bundle.min.js"></script>
@@ -235,12 +263,14 @@
   <script src="../js/ui.js"></script>
   <script src="../js/user-service.js"></script>
   <script src="../js/book-service.js"></script>
+  <script src="../js/author-service.js"></script>
   <script>
     var current_dir = '..';
     UI.init_listeners(current_dir);
     UserService.init(current_dir);
     BookService.init();
     BookService.list_author(current_dir);
+    AuthorService.list_author(current_dir);
 
     function enable_tooltips() {
       const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')

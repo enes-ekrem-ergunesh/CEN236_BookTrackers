@@ -10,6 +10,14 @@ class AuthorDao extends BaseDao{
     parent::__construct("authors");
   }
 
+  public function get_public_author($id){
+    $query = "SELECT a.* FROM authors a 
+    INNER JOIN users u ON a.user_id = u.id 
+    WHERE u.admin = 1 AND a.id = :id";
+    
+    return $this->query($query, ['id' => $id]);
+  }
+
 }
 
 ?>

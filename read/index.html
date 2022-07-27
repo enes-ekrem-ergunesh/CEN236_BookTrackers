@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
   <title>Document</title>
 
   <style>
@@ -95,7 +96,7 @@
 
             <div name="Book Container Title Row" id="bookContainerTitleRow" class="row align-items-end mb-2">
 
-              <div class="col">
+              <div name="Book and Author Name" class="col">
                 <div class="row">
                   <h4 id="book-name" class="card-title placeholder-wave"
                     style="width:fit-content; margin:0; padding-right:0;">
@@ -108,17 +109,36 @@
                 </div>
               </div>
 
-              <div name="Page Selector" class="col-4 col-sm-4 col-md-3">
+              <div name="Page Selector" class="col-4 col-sm-3 col-md-3">
                 <div class="container-fluid" style="padding: 0;">
+                  <div class="row" style="width: 100%; margin: 0;">
 
-                  <div class="input-group">
+                    <div class="col" style="padding: 0;">
 
-                      <button class="btn btn-outline-secondary" type="button">-</button>
-                      <input type="number" class="form-control" value="1" aria-label="Number of current page"
-                        style="padding-left: 7px;padding-right: 7px; text-align: center;">
-                      <button class="btn btn-outline-secondary" type="button">+</button>
+                      <div class="input-group">
+                        <button class="btn btn-outline-secondary" type="button"
+                          onclick="selfUI.decrease_page_selector();"
+                          style="padding-right: 9px; padding-left: 9px;">-</button>
+
+                        <input id="page-selector-input" type="number" class="form-control" value="1"
+                          aria-label="Number of current page"
+                          style="padding-left: 7px;padding-right: 7px; text-align: center;">
+
+                        <button class="btn btn-outline-secondary" type="button"
+                          onclick="selfUI.increase_page_selector();"
+                          style="padding-right: 9px; padding-left: 9px;">+</button>
+
+                        <button class="btn btn-outline-success" type="button" onclick="selfUI.page_selector_go();"
+                          style="padding-right: 9px; padding-left: 9px;">></button>
+                      </div>
+
+                    </div>
+
+
+
 
                   </div>
+
 
 
                 </div>
@@ -170,7 +190,7 @@
 
                 </button>
 
-                <div id="bookText" name="Book Text" class="col fit" style="overflow-y: scroll;" data-bs-spy="scroll"
+                <div id="bookText" name="Book Text" class="col fit" style="overflow-y: scroll;" data-bs-spy="scroll" onscroll="selfUI.on_book_scroll();"
                   data-bs-target="#bookChapters" data-bs-smooth-scroll="true" tabindex="0">
 
 
@@ -403,41 +423,17 @@
         </div>
 
         <div name="User Canvas Col" class="col-0 col-md-none col-lg-4" style="border-left: 1px solid #888;">
-          <aside>
+          <aside style="height: 100%;">
             <div name="User Canvas" id="userCanvas" class="offcanvas-lg offcanvas-end"
-              aria-labelledby="bdSidebarOffcanvasLabel">
+              aria-labelledby="bdSidebarOffcanvasLabel"
+              style="transform: none; width: 100%; max-width: 400px; height: 100%;">
               <div class="offcanvas-header border-bottom">
                 <h5 class="offcanvas-title" id="bdSidebarOffcanvasLabel">Account</h5>
                 <button type="button" class="btn-close" onclick="UI.user_canvas_toggle();"></button>
               </div>
               <div name="User Canvas Body" id="UserCanvasBody" class="offcanvas-body">
 
-                <div name="User Canvas Body Container" class="container">
-                  <div class="row justify-content-center">
-                    <div class="col-10 text-center">
-                      <img class="img-fluid" alt="Profile Photo" style="max-height: 15rem;"
-                        src="https://htmlstream.com/preview/unify-v2.6.1/assets/img-temp/400x450/img5.jpg">
-                    </div>
-                  </div>
-                  <div class="row justify-content-center my-3">
-                    <div class="col-10 text-center">
-                      <h3>Name Surname</h3>
-                    </div>
-                  </div>
-                  <div class="row justify-content-center">
-                    <div class="col-10">
-                      <div class="list-group">
-                        <a style="border: none;" href="./" class="list-group-item list-group-item-action">My Shelf</a>
-                        <a style="border: none;" href="../account settings/"
-                          class="list-group-item list-group-item-action">Account
-                          Settings</a>
-                        <a style="border: none; color: red;" href="#"
-                          class="list-group-item list-group-item-action">Logout</a>
-                      </div>
-
-                    </div>
-                  </div>
-
+                <div name="User Canvas Body Container" id="userCanvasBodyContainer" class="container">
                 </div>
 
               </div>
@@ -458,11 +454,12 @@
   <script src="../js/bootstrap.min.js"></script>
   <script src="../js/jquery-3.6.0.min.js"></script>
   <script src="../js/jquery.validate.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   <script src="../js/book-service.js"></script>
   <script src="../js/ui.js"></script>
   <script src="./self_ui.js"></script>
   <script>
-    UI.screen_size_change_listener();
+    UI.init_listeners('..');
     selfUI.init_listeners();
     BookService.set_reader();
   </script>

@@ -36,7 +36,7 @@ var BookService = {
               <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-xxl-3 my-3">
                 <div class="card">
 
-                  <a href="`+ result[i].source + `">
+                  <a href="./read" onclick="localStorage.setItem('current_book_id', '`+ result[i].id + `');">
                     <img src="`+ result[i].cover + `"
                       class="card-img-top" alt="Book Cover">
                   </a>
@@ -49,7 +49,7 @@ var BookService = {
                         <h6 id="book-name-`+ result[i].id + `" name="Book Name" class="card-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" data-bs-toggle="none" data-bs-title="` + result[i].name + `" data-bs-placement="top" >` + result[i].name + `</h6>
                       </a>
 
-                      <a class="list-group-item" href="`+ result[i].author_id + `" style="padding-right:0.7em;">
+                      <a class="list-group-item" href="./author" onclick="localStorage.setItem('current_author_id', '`+ result[i].author_id + `');" style="padding-right:0.7em;">
                         <p style="font-size:14px;">`+ result[i].author_name + `</p>
                       </a>
 

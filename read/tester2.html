@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
   <title>Document</title>
 
   <style>
@@ -95,7 +96,7 @@
 
             <div name="Book Container Title Row" id="bookContainerTitleRow" class="row align-items-end mb-2">
 
-              <div class="col">
+              <div name="Book and Author Name" class="col">
                 <div class="row">
                   <h4 id="book-name" class="card-title placeholder-wave"
                     style="width:fit-content; margin:0; padding-right:0;">
@@ -110,15 +111,34 @@
 
               <div name="Page Selector" class="col-4 col-sm-3 col-md-3">
                 <div class="container-fluid" style="padding: 0;">
+                  <div class="row" style="width: 100%; margin: 0;">
 
-                  <div class="input-group">
+                    <div class="col" style="padding: 0;">
 
-                      <button class="btn btn-outline-secondary" type="button">-</button>
-                      <input type="number" class="form-control" value="1" aria-label="Number of current page"
-                        style="padding-left: 7px;padding-right: 7px; text-align: center;">
-                      <button class="btn btn-outline-secondary" type="button">+</button>
+                      <div class="input-group">
+                        <button class="btn btn-outline-secondary" type="button"
+                          onclick="selfUI.decrease_page_selector();"
+                          style="padding-right: 9px; padding-left: 9px;">-</button>
+
+                        <input id="page-selector-input" type="number" class="form-control" value="1"
+                          aria-label="Number of current page"
+                          style="padding-left: 7px;padding-right: 7px; text-align: center;">
+
+                        <button class="btn btn-outline-secondary" type="button"
+                          onclick="selfUI.increase_page_selector();"
+                          style="padding-right: 9px; padding-left: 9px;">+</button>
+
+                        <button class="btn btn-outline-success" type="button" onclick="selfUI.page_selector_go();"
+                          style="padding-right: 9px; padding-left: 9px;">></button>
+                      </div>
+
+                    </div>
+
+
+
 
                   </div>
+
 
 
                 </div>
@@ -458,6 +478,7 @@
   <script src="../js/bootstrap.min.js"></script>
   <script src="../js/jquery-3.6.0.min.js"></script>
   <script src="../js/jquery.validate.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   <script src="../js/book-service.js"></script>
   <script src="../js/ui.js"></script>
   <script src="./self_ui.js"></script>

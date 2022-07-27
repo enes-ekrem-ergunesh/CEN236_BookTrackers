@@ -1,6 +1,23 @@
 class selfUI {
 
   static init_listeners() {
+    toastr.options = {
+      "closeButton": true,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": false,
+      "positionClass": "toast-bottom-right",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "3000",
+      "extendedTimeOut": "1500",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
     this.window_size_change_listener();
     this.window_size_change_listener_reinforcement();
     this.read_book_from_file();
@@ -73,7 +90,7 @@ class selfUI {
   static read_book_from_file() {
 
     var current_book = localStorage.getItem("current_book_id");
-    var file = "../assets/books/"+current_book+".txt";
+    var file = "../assets/books/" + current_book + ".txt";
     // var file = "../assets/books/3-Old-Bear-Paw_Martine-Max test.txt";
 
     var rawFile = new XMLHttpRequest();
@@ -127,11 +144,11 @@ class selfUI {
                 }
 
                 // add page text to book text
-                html_book += "<div id='page-" + page_counter + "' style='margin-bottom:0rem;'>" + "<p style='font-size: 14px; text-align: end; margin-bottom:0rem; margin-top:2rem'>page " + page_counter + "</p>" + current_page_html + "</div>";
+                html_book += "<div id='page-" + page_counter + "' name='Book Page' style='margin-bottom:0rem;'>" + "<p style='font-size: 14px; text-align: end; margin-bottom:0rem; margin-top:2rem'>page " + page_counter + "</p>" + current_page_html + "</div>";
 
                 // add page headings to contents
                 html_chap += `
-                  <a style="visibility: hidden; height: 0;" href="#page-`+ page_counter + `">Page ` + page_counter + `</a>
+                  <a name="Page Heading" style="visibility: hidden; height: 0;" href="#page-`+ page_counter + `">Page ` + page_counter + `</a>
                 `;
 
 
@@ -140,7 +157,7 @@ class selfUI {
             }
             // close the div for chapter
             if (chapters[i] !== "") {
-              
+
               // add page group to contents
               html_chap += `</nav>`;
               html_book += "</div>";
@@ -169,6 +186,64 @@ class selfUI {
     }
     rawFile.send(null);
   }
-  
+
+  static increase_page_selector() {
+    var number_of_pages = document.getElementsByName('Book Page').length;
+    var page_selector = document.getElementById('page-selector-input');
+    var value = page_selector.value;
+    value++;
+    if (value <= number_of_pages) {
+      page_selector.value = value;
+    }
+  }
+
+  static decrease_page_selector() {
+    var page_selector = document.getElementById('page-selector-input');
+    var value = page_selector.value;
+    value--;
+    if (value > 0) {
+      page_selector.value = value;
+    }
+  }
+
+  static page_selector_go() {
+    var page_number = document.getElementById('page-selector-input').value;
+    var pages = document.getElementsByName('Book Page');
+    var number_of_pages = pages.length;
+    if (page_number > number_of_pages || page_number <= 0) {
+      var pageheads = document.getElementsByName("Page Heading");
+      var activepage = 0;
+      for (var i = 0; i < pageheads.length; i++) {
+        if (pageheads[i].getAttribute("class") == "active") {
+          activepage = i + 1;
+        }
+      }
+      // set value to active page
+      document.getElementById('page-selector-input').value = activepage;
+      toastr.error("Page number out of range!");
+    }
+    else {
+      localStorage.setItem("page_change", '1');
+      this.go_to_page(page_number);
+    }
+  }
+
+  static go_to_page($page_number) {
+    // window.location.replace('./tester2.html#page-'+$page_number); //test
+    window.location.replace('./#page-' + $page_number);
+  }
+
+  static on_book_scroll() {
+    if (localStorage.getItem("page_change") === '1') localStorage.setItem("page_change", '0');
+    else {
+      for (var i = 0; i < document.getElementsByName("Page Heading").length; i++) {
+        if (document.getElementsByName("Page Heading")[i].getAttribute("class") == "active") {
+          // set value to active page
+          document.getElementById('page-selector-input').value = (i + 1);
+        }
+      }
+    }
+  }
+
 
 }

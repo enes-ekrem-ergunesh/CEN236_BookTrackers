@@ -1,27 +1,10 @@
 var UserService = {
 
   init: function ($current_dir) {
-    toastr.options = {
-      "closeButton": true,
-      "debug": false,
-      "newestOnTop": false,
-      "progressBar": false,
-      "positionClass": "toast-bottom-right",
-      "preventDuplicates": false,
-      "onclick": null,
-      "showDuration": "300",
-      "hideDuration": "1000",
-      "timeOut": "3000",
-      "extendedTimeOut": "1500",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
-    }
     $('#login-form').validate({
       submitHandler: function (form) {
         var entity = Object.fromEntries((new FormData(form)).entries());
-        console.log(entity);
+        // console.log(entity);
         UserService.login(entity, $current_dir);
       }
     });
@@ -32,7 +15,7 @@ var UserService = {
         //   console.log('avatar_id: '+entity.avatar_id);
 
         // }
-        console.log(entity);
+        // console.log(entity);
         UserService.signup(entity, $current_dir);
       }
     });
@@ -46,7 +29,7 @@ var UserService = {
       contentType: "application/json",
       dataType: "json",
       success: function (result) {
-        console.log(result);
+        // console.log(result);
         localStorage.setItem("token", result.token);
         UI.token_check($current_dir);
       },
@@ -64,7 +47,7 @@ var UserService = {
       contentType: "application/json",
       dataType: "json",
       success: function (result) {
-        console.log(result);
+        // console.log(result);
         localStorage.setItem("token", result.token);
         $('#signUpModal').modal('toggle');
         var modalBackdrops = document.getElementsByClassName('modal-backdrop fade show');

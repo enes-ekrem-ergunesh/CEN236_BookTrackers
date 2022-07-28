@@ -25,7 +25,7 @@ var AuthorService = {
       url: $current_dir + '/rest/publicauthors/' + localStorage.getItem("current_author_id"),
       type: 'GET',
       success: function (result) {
-        console.log(result[0]);
+        // console.log(result[0]);
         AuthorService.lister($current_dir, result[0]);
       },
       error: function (XMLHttpRequest, textStatus, errorThrown) {

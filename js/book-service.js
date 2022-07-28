@@ -1,25 +1,5 @@
 var BookService = {
 
-  init: function () {
-    toastr.options = {
-      "closeButton": true,
-      "debug": false,
-      "newestOnTop": false,
-      "progressBar": false,
-      "positionClass": "toast-bottom-right",
-      "preventDuplicates": false,
-      "onclick": null,
-      "showDuration": "300",
-      "hideDuration": "1000",
-      "timeOut": "3000",
-      "extendedTimeOut": "1500",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
-    }
-  },
-
   list_home: function ($current_dir) {
     $.ajax({
       url: $current_dir + '/rest/publicbooks',
@@ -74,8 +54,8 @@ var BookService = {
                   <p style="font-size:14px;">`+ result[i].author_name + `</p>
                 </a>
 
-                <a href="#add" class="list-group-item"
-                  style="width:fit-content; height:fit-content; position:absolute; padding-bottom:0.3em;">
+                <a href=" javascript:void(0);" class="list-group-item" 
+                  style="width:fit-content; height:fit-content; position:absolute; padding-bottom:0.3em;" onclick="UserbookService.on_add('`+ $current_dir + `', `+ result[i].id + `);">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-plus-circle"
                     viewBox="0 0 16 16" width="21" height="21">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
@@ -102,7 +82,7 @@ var BookService = {
         books[j].setAttribute('data-bs-toggle', 'tooltip');
       }
     }
-    enable_tooltips();
+    UI.enable_tooltips();
   },
 
   set_reader: function ($current_dir) {
@@ -113,7 +93,7 @@ var BookService = {
       url: $current_dir + '/rest/publicbooks/' + current_book_id,
       type: 'GET',
       success: function (result) {
-        console.log(result[0]);
+        // console.log(result[0]);
         $('#book-name').html(result[0].name);
         $('#author-name').html("by " + result[0].author_name);
       },

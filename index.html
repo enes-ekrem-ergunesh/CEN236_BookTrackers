@@ -43,7 +43,7 @@
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
 
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="javascript:void(0)">Home</a>
             </li>
 
             <li class="nav-item">
@@ -216,7 +216,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
           </div>
           </form>
         </div>
@@ -225,30 +225,27 @@
   </modals>
 
   
+  <js_import>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/bootstrap.bundle.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/jquery-3.6.0.min.js"></script>
+    <script src="./js/jquery.validate.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="./js/ui.js"></script>
+    <script src="./js/user-service.js"></script>
+    <script src="./js/book-service.js"></script>
+    <script src="./js/userbook-service.js"></script>
+  </js_import>
 
-  <script src="./js/popper.min.js"></script>
-  <script src="./js/bootstrap.bundle.min.js"></script>
-  <script src="./js/bootstrap.min.js"></script>
-  <script src="./js/bootstrap.bundle.js"></script>
-  <script src="./js/bootstrap.js"></script>
-  <script src="./js/jquery-3.6.0.min.js"></script>
-  <script src="./js/jquery.validate.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-  <script src="./js/ui.js"></script>
-  <script src="./js/user-service.js"></script>
-  <script src="./js/book-service.js"></script>
   <script>
     var current_dir = '.';
-    UI.init_listeners(current_dir);
+    UI.init(current_dir);
     UserService.init(current_dir);
-    BookService.init();
     BookService.list_home(current_dir);
-
-    function enable_tooltips() {
-      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-    }
-
   </script>
+  
 </body>
 </html>

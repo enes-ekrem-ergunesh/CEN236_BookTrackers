@@ -1,10 +1,27 @@
 class UI {
 
-  static init_listeners($current_dir) {
+  static init($current_dir) {
     this.token_check($current_dir);
     this.screen_size_change_listener();
     // if($current_dir === '.') this.avatar_radio_button_onclick();
-    this.avatar_radio_button_onclick();
+    this.avatar_radio_button_onclick();    
+    toastr.options = {
+      "closeButton": true,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": false,
+      "positionClass": "toast-bottom-right",
+      "preventDuplicates": true,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "3000",
+      "extendedTimeOut": "1500",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
   }
 
   static token_check($current_dir) {
@@ -201,6 +218,11 @@ class UI {
         break;
     }
 
+  }
+
+  static enable_tooltips() {
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
   }
 
 }

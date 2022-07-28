@@ -11,5 +11,9 @@ class UserService extends BaseService{
   public function sign_up($entity){
     return $this->dao->sign_up($entity);
   }
+  
+  public function update_current($entity, $id){
+    return $this->dao->update_current($entity, $id);
+  }
 }
 ?>

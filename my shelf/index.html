@@ -247,6 +247,8 @@
 
   <script>
     var current_dir = '..';
+    var token = localStorage.getItem("token");
+    if (!token) window.location.href = current_dir + '/';
     UI.init(current_dir);
     UserService.init(current_dir);
     UserbookService.list_shelf(current_dir);

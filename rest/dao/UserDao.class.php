@@ -28,6 +28,18 @@ class UserDao extends BaseDao{
     $query .= ")";
     return $this->query_entity($query, $entity);
   }
+  
+  public function update_current($entity, $id){
+    $query = "UPDATE users SET ";
+    foreach ($entity as $name => $value) {
+      $query .= $name . "= :" . $name . ", ";
+    }
+    $query = substr($query, 0, -2);
+    $query .= " WHERE id = :id";
+
+    $entity['id'] = $id;
+    return $this->query_entity($query, $entity);
+  }
 
 
 }

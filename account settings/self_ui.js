@@ -10,15 +10,29 @@ class selfUI {
       submitHandler: function (form) {
         var entity = Object.fromEntries((new FormData(form)).entries());
         console.log(entity);
-        //   if (!isNaN(entity.id)){
-        //     // update method
-        //     var id = entity.id;
-        //     delete entity.id;
-        //     NoteService.update(id, entity);
-        //   }else{
-        //     // add method
-        //     NoteService.add(entity);
-        //   }
+        selfUI.update_user(entity);
+      }
+    });
+  }
+
+  static update_user(entity){
+    const current_dir = '..';
+    $.ajax({
+      url: current_dir+'/rest/current_user',
+      type: 'PUT',
+      data: JSON.stringify(entity),
+      contentType: "application/json",
+      dataType: "json",
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
+      },
+      success: function (result) {
+        // console.log(result);
+        localStorage.setItem("token", result.token);
+        UI.token_check(current_dir);
+      },
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+        toastr.error(XMLHttpRequest.responseJSON.message);
       }
     });
   }
@@ -57,22 +71,22 @@ class selfUI {
     switch ($id) {
       case 1:
         $('#as_avatar1').attr("checked", "");
-        $('#avatarID').attr("value", "1");
+        $('#as_avatarID').attr("value", "1");
         break;
 
       case 2:
         $('#as_avatar2').attr("checked", "");
-        $('#avatarID').attr("value", "2");
+        $('#as_avatarID').attr("value", "2");
         break;
 
       case 3:
         $('#as_avatar3').attr("checked", "");
-        $('#avatarID').attr("value", "3");
+        $('#as_avatarID').attr("value", "3");
         break;
 
       case 4:
         $('#as_avatar4').attr("checked", "");
-        $('#avatarID').attr("value", "4");
+        $('#as_avatarID').attr("value", "4");
         break;
 
       default:

@@ -236,4 +236,55 @@ Flight::route('GET /current_user', function(){
   Flight::json($user);
 });
 
+/**
+  * @OA\PUT(
+  *     path="/current_user",
+  *     description="Update current user information",
+  *     tags={"account"}, security={{"ApiKeyAuth": {}}},
+  *     @OA\RequestBody(description="Basic user info", required=true,
+  *       @OA\MediaType(mediaType="application/json",
+  *    			@OA\Schema(
+  *    				@OA\Property(property="avatar_id", type="number", example="1", description="Avatar id"),
+  *    				@OA\Property(property="first_name", type="string", example="Mark", description="First Name"),
+  *    				@OA\Property(property="last_name", type="string", example="Spector", description="Last Name"),
+  *    				@OA\Property(property="old_password", type="string", example="123", description="Old Password"),
+  *    				@OA\Property(property="password", type="string", example="321", description="New Password" )
+  *        )
+  *     )),
+  *     @OA\Response(
+  *         response=200,
+  *         description="JWT Token on successful response"
+  *     ),
+  *     @OA\Response(
+  *         response=404,
+  *         description="Wrong Password | User doesn't exist"
+  *     )
+  * )
+*/
+Flight::route('PUT /current_user', function(){
+  $entity = Flight::request()->data->getData();
+  // Flight::json($entity);
+  $user = Flight::userDao()->get_user_by_email(Flight::get('user')['email']);
+  if($user['password'] == md5($entity['old_password'])){
+    if(strlen($entity['password']) < 8 || strlen($entity['password']) > 20){
+      // If password is too short or too long
+      Flight::json(["message" => "Invalid password"], 406);
+    }
+    else{
+      unset($entity['old_password']);
+      $entity['email'] = $user['email'];
+      $entity['admin'] = $user['admin'];
+      $entity['password'] = md5($entity['password']);
+      // Flight::json($entity);
+      $user = Flight::userService()->update_current($entity, $user['id']);
+      unset($user['password']);
+      $jwt = JWT::encode($user, Config::JWT_SECRET(), 'HS256');
+      Flight::json(['token' => $jwt]);
+    }
+  }
+  else{
+    Flight::json(["message" => "Wrong password"], 404);
+  }
+});
+
 ?>

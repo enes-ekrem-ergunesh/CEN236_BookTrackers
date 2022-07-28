@@ -10,7 +10,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/services/AuthorService.class.php';
 require_once __DIR__ . '/services/AvatarService.class.php';
 require_once __DIR__ . '/services/BookService.class.php';
-require_once __DIR__ . '/services/UserbookService.class.php';
+// require_once __DIR__ . '/services/UserbookService.class.php';
 require_once __DIR__ . '/services/UserService.class.php';
 require_once __DIR__ . '/dao/UserDao.class.php';
 
@@ -18,7 +18,7 @@ Flight::register('userDao', 'UserDao');
 Flight::register('authorService', 'AuthorService');
 Flight::register('avatarService', 'AvatarService');
 Flight::register('bookService', 'BookService');
-Flight::register('userbookService', 'UserbookService');
+// Flight::register('userbookService', 'UserbookService');
 Flight::register('userService', 'UserService');
 
 Flight::map('error', function (Exception $ex) {
@@ -90,7 +90,7 @@ Flight::route('GET /docs.json', function () {
 require_once __DIR__ . '/routes/AuthorRoutes.php';
 require_once __DIR__ . '/routes/AvatarRoutes.php';
 require_once __DIR__ . '/routes/BookRoutes.php';
-require_once __DIR__ . '/routes/UserbookRoutes.php';
+// require_once __DIR__ . '/routes/UserbookRoutes.php';
 require_once __DIR__ . '/routes/UserRoutes.php';
 
 Flight::start();

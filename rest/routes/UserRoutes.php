@@ -233,9 +233,7 @@ Flight::route('POST /sign_up', function(){
 */
 Flight::route('GET /current_user', function(){
   $user = Flight::get('user');
-  $test = "test";
   Flight::json($user);
-  // echo "hello world";
 });
 
 ?>

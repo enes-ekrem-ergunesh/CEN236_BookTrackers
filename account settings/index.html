@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
   <title>Document</title>
 
 
@@ -49,7 +50,7 @@
             <li class="nav-item">
               <a class="nav-link active" href="#">Account Settings</a>
             </li>
-            
+
             <li class="nav-item">
               <a class="nav-link" href="#" style="--bs-nav-link-hover-color: red;
               --bs-nav-link-color: #ff5757cf;">Logout</a>
@@ -76,196 +77,79 @@
           <main>
 
             <div name="Account Form Container" class="container">
-              <form name="Account Form" id="accountForm" class="row g-3 needs-validation" novalidate>
-          
+              <form name="Account Form" id="as_accountForm" class="row g-3 needs-validation" novalidate>
+
                 <div name="Avatar Div" class="col-12 text-center">
-                  <label for="avatars" class="form-label" style="width:100%;">Avatar</label>
-                  <div class="btn-group" id="avatars">
-          
-                    <input name="avatar 1" id="avatar1" type="radio" class="btn-check" autocomplete="off" checked>
-                    <label class="btn btn-outline-info" for="avatar 1">
-                      <img name="Avatar button 1" id="avatarButton1" src="/../WebVS/assets/avatars/1.svg" alt="" width="80rem" height="80rem"/>
+                  <label for="as_avatars" class="form-label" style="width:100%;">Avatar</label>
+                  <div class="btn-group" id="as_avatars">
+
+                    <label class="btn btn-info placeholder-wave">
+                      <img width="80rem" height="80rem" style="visibility: hidden;"/>
                     </label>
-          
-                    <input name="avatar 2" id="avatar2" type="radio" class="btn-check" autocomplete="off">
-                    <label class="btn btn-outline-info" for="avatar 2">
-                      <img name="Avatar button 2" id="avatarButton2" src="/../WebVS/assets/avatars/2.svg" alt="" width="80rem" height="80rem"/>
+                    <label class="btn btn-primary placeholder-wave">
+                      <img width="80rem" height="80rem" style="visibility: hidden;"/>
                     </label>
-          
-                    <input name="avatar 3" id="avatar3" type="radio" class="btn-check" autocomplete="off">
-                    <label class="btn btn-outline-info" for="avatar 3">
-                      <img name="Avatar button 3" id="avatarButton3" src="/../WebVS/assets/avatars/3.svg" alt="" width="80rem" height="80rem"/>
+                    <label class="btn btn-danger placeholder-wave">
+                      <img width="80rem" height="80rem" style="visibility: hidden;"/>
                     </label>
-          
-                    <input name="avatar 4" id="avatar4" type="radio" class="btn-check" autocomplete="off">
-                    <label class="btn btn-outline-info" for="avatar 4">
-                      <img name="Avatar button 4" id="avatarButton4" src="/../WebVS/assets/avatars/4.svg" alt="" width="80rem" height="80rem"/>
+                    <label class="btn btn-success placeholder-wave">
+                      <img width="80rem" height="80rem" style="visibility: hidden;"/>
                     </label>
-          
-          
+
                   </div>
-                  <input name="avatar_id" id="avatarID" class="my-0" type="number"
+                  <input name="avatar_id" id="as_avatarID" class="my-0" type="number"
                     style="visibility: hidden; width:100%; height:0;" value="1" required>
                 </div>
-          
+
                 <div name="First Name Div" class="col-md-6">
-                  <label for="formFirstName" class="form-label">First name</label>
-                  <input name="first_name" id="formFirstName" type="text" class="form-control" value="Mark" required>
+                  <label for="as_formFirstName" class="form-label">First name</label>
+                  <p class="form-control placeholder-wave">
+                    <span class="placeholder col-2"></span>
+                  </p>
                 </div>
-          
+
                 <div name="Last Name Div" class="col-md-6">
-                  <label for="formLastName" class="form-label">Last name</label>
-                  <input name="last_name" id="formLastName" type="text" class="form-control" value="Otto" required>
+                  <label for="as_formLastName" class="form-label">Last name</label>
+                  <p class="form-control placeholder-wave">
+                    <span class="placeholder col-3"></span>
+                  </p>
                 </div>
-          
-          
-                <div name="Email Div" class="col-md-6">
-                  <label for="formEmail" class="form-label">Email</label>
-                  <input name="email" id="formEmail" type="text" class="form-control" value="mark.otto@mymail.com" required>
+
+                <div name="Old Password Div" class="col-md-6">
+                  <label for="as_formOldPassword" class="form-label">Old Password</label>
+                  <input name="password" id="as_formOldPassword" type="password" class="form-control"
+                    value="" required>
                 </div>
-          
-                <div name="Password Div" class="col-md-6">
-                  <label for="formPassword" class="form-label">Password</label>
-                  <div class="input-group">
-                    <input name="password" id="formPassword" type="password" class="form-control" value="example password"
-                      disabled required>
-                    <button name="Edit Password Button" id="editPasswordButton" class="btn btn-outline-secondary" type="button"
-                      data-bs-toggle="modal" data-bs-target="#editPasswordModal" style="width:45%;">
-                      Edit Password
-                    </button>
-                  </div>
+
+                <div name="New Password Div" class="col-md-6">
+                  <label for="as_formNewPassword" class="form-label">New Password</label>
+                  <input name="password" id="as_formNewPassword" type="password" class="form-control"
+                    value="" required>
                 </div>
-          
+
                 <div name="Submit Div" class="col-12">
                   <button class="btn btn-primary" type="submit">Save Changes</button>
                 </div>
+
               </form>
-          
+
             </div>
-          
-            <!-- Modal -->
-            <div id="editPasswordModal" class="modal fade" tabindex="-1" aria-labelledby="editPasswordModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">        
-          
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="editPasswordModalLabel">Edit Password</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-          
-                  <div class="modal-body">
-                    <form name="Edit Password Form" id="editPasswordForm" class="row g-3 needs-validation" novalidate>
-          
-                      <div name="Old Password Div" class="form-label">
-                        <label for="formOldPassword" class="form-label">Old Password</label>
-                        <div class="row">
-                          <div class="col-11" style="padding-right:0.2rem">
-          
-                            <input name="old_password" id="formOldPassword" type="password" class="form-control" required>
-                            <div id="formOldPasswordValid" class="valid-feedback">
-                              Looks good!
-                            </div>
-                            <div id="formOldPasswordInvalid" class="invalid-feedback">
-                              Invalid password!
-                            </div>
-          
-                          </div>
-                          <div class="col-1">
-                            <i name="Password show/hide toggler" id="formOldPasswordToggle" class="far fa-eye" style="margin-top:10px; cursor: pointer;"></i>
-                          </div>
-                        </div>
-                      </div>
-          
-                      <div name="New Password Div" class="form-label">
-                        <label for="formNewPassword" class="form-label">New Password</label>
-                        <div class="row">
-                          <div class="col-11" style="padding-right:0.2rem">
-          
-                            <input name="new_password" id="formNewPassword" type="password" class="form-control" required>
-                            <div id="formNewPasswordValid" class="valid-feedback">
-                              Looks good!
-                            </div>
-                            <div id="formNewPasswordInvalid" class="invalid-feedback">
-                              Invalid password!
-                            </div>
-          
-                          </div>
-                          <div class="col-1">
-                            <i name="Password show/hide toggler" id="formNewPasswordToggle" class="far fa-eye" style="margin-top:10px; cursor: pointer;"></i>
-                          </div>
-                        </div>
-                      </div>
-          
-                      <div name="Confirm Password Div" class="form-label">
-                        <label for="formConfirmPassword" class="form-label">Confirm Password</label>
-                        <div class="row">
-                          <div class="col-11" style="padding-right:0.2rem">
-          
-                            <input name="confirm_password" id="formConfirmPassword" type="password" class="form-control" required>
-                            <div id="formConfirmPasswordValid" class="valid-feedback">
-                              Looks good!
-                            </div>
-                            <div id="formConfirmPasswordInvalid" class="invalid-feedback">
-                              Invalid password!
-                            </div>
-          
-                          </div>
-                          <div class="col-1">
-                            <i name="Password show/hide toggler" id="formConfirmPasswordToggle" class="far fa-eye" style="margin-top:10px; cursor: pointer;"></i>
-                          </div>
-                        </div>
-                      </div>
-          
-                    </div>
-                    
-                    <div class="modal-footer">
-                      <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
-                      <button class="btn btn-primary" type="submit">Save Changes</button>
-                    </form>
-                    </div>
-                </div>
-              </div>
-            </div>
-            
+
           </main>
         </div>
 
         <div name="User Canvas Col" class="col-0 col-md-none col-lg-4" style="border-left: 1px solid #888;">
-          <aside>
+          <aside style="height: 100%;">
             <div name="User Canvas" id="userCanvas" class="offcanvas-lg offcanvas-end"
-              aria-labelledby="bdSidebarOffcanvasLabel">
+              aria-labelledby="bdSidebarOffcanvasLabel"
+              style="transform: none; width: 100%; max-width: 400px; height: 100%;">
               <div class="offcanvas-header border-bottom">
                 <h5 class="offcanvas-title" id="bdSidebarOffcanvasLabel">Account</h5>
                 <button type="button" class="btn-close" onclick="UI.user_canvas_toggle();"></button>
               </div>
               <div name="User Canvas Body" id="UserCanvasBody" class="offcanvas-body">
 
-                <div name="User Canvas Body Container" class="container">
-                  <div class="row justify-content-center">
-                    <div class="col-10 text-center">
-                      <img class="img-fluid" alt="Profile Photo" style="max-height: 15rem;"
-                        src="https://htmlstream.com/preview/unify-v2.6.1/assets/img-temp/400x450/img5.jpg">
-                    </div>
-                  </div>
-                  <div class="row justify-content-center my-3">
-                    <div class="col-10 text-center">
-                      <h3>Name Surname</h3>
-                    </div>
-                  </div>
-                  <div class="row justify-content-center">
-                    <div class="col-10">
-                      <div class="list-group">
-                        <a style="border: none;" href="../my shelf/" class="list-group-item list-group-item-action">My Shelf</a>
-                        <a style="border: none;" href="#" class="list-group-item list-group-item-action">Account
-                          Settings</a>
-                        <a style="border: none; color: red;" href="#"
-                          class="list-group-item list-group-item-action">Logout</a>
-                      </div>
-              
-                    </div>
-                  </div>
-              
+                <div name="User Canvas Body Container" id="userCanvasBodyContainer" class="container">
                 </div>
 
               </div>
@@ -278,20 +162,111 @@
     </div>
   </main>
 
+  <modals>
+    <!-- Modal -->
+    <div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="signUpModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="signUpModalLabel">Sign up</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form name="Account Form" id="signup-form" class="row g-3 needs-validation" novalidate>
+
+              <div name="Avatar Div" class="col-12 text-center">
+                <label for="avatars" class="form-label" style="width:100%;">Avatar</label>
+                <div class="btn-group" id="avatars">
+
+                  <input id="avatar1" type="radio" class="btn-check" autocomplete="off" checked>
+                  <label class="btn btn-outline-info" for="avatar 1">
+                    <img name="Avatar button 1" id="avatarButton1" src="../assets/avatars/1.svg" alt="" width="80rem"
+                      height="80rem" />
+                  </label>
+
+                  <input id="avatar2" type="radio" class="btn-check" autocomplete="off">
+                  <label class="btn btn-outline-info" for="avatar 2">
+                    <img name="Avatar button 2" id="avatarButton2" src="../assets/avatars/2.svg" alt="" width="80rem"
+                      height="80rem" />
+                  </label>
+
+                  <input id="avatar3" type="radio" class="btn-check" autocomplete="off">
+                  <label class="btn btn-outline-info" for="avatar 3">
+                    <img name="Avatar button 3" id="avatarButton3" src="../assets/avatars/3.svg" alt="" width="80rem"
+                      height="80rem" />
+                  </label>
+
+                  <input id="avatar4" type="radio" class="btn-check" autocomplete="off">
+                  <label class="btn btn-outline-info" for="avatar 4">
+                    <img name="Avatar button 4" id="avatarButton4" src="../assets/avatars/4.svg" alt="" width="80rem"
+                      height="80rem" />
+                  </label>
+
+
+                </div>
+                <input name="avatar_id" id="avatarID" class="my-0" type="number"
+                  style="visibility: hidden; width:100%; height:0;" value="1" required>
+              </div>
+
+              <div name="First Name Div" class="col-md-6">
+                <label for="formFirstName" class="form-label">First name</label>
+                <input name="first_name" id="formFirstName" type="text" class="form-control" required>
+              </div>
+
+              <div name="Last Name Div" class="col-md-6">
+                <label for="formLastName" class="form-label">Last name</label>
+                <input name="last_name" id="formLastName" type="text" class="form-control" required>
+              </div>
+
+
+              <div name="Email Div" class="col-md-6">
+                <label for="signup-form-email" class="form-label">Email</label>
+                <input name="email" id="signup-form-email" type="text" class="form-control" required>
+              </div>
+
+              <div name="Password Div" class="col-md-6">
+                <label for="signup-form-email" class="form-label">Password</label>
+                <input name="password" id="signup-form-password" type="password" class="form-control" required>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </modals>
 
 
 
 
-  <script src="../js/bootstrap.bundle.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
-  <script src="../js/jquery-3.6.0.min.js"></script>
-  <script src="../js/jquery.validate.min.js"></script>
-  <script src="../js/ui.js"></script>
-  <script src="./self_ui.js"></script>
+  <js_import>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/jquery.validate.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="../js/ui.js"></script>
+    <script src="../js/user-service.js"></script>
+    <script src="../js/book-service.js"></script>
+    <script src="../js/userbook-service.js"></script>
+    <script src="../js/author-service.js"></script>
+    <script src="./self_ui.js"></script>
+  </js_import>
+
   <script>
-    UI.screen_size_change_listener();
-    selfUI.init_listeners();
-  </script>
+    var current_dir = '..';
+    var token = localStorage.getItem("token");
+    if (!token) window.location.href = current_dir + '/';
+    UI.init(current_dir);
+    UserService.init(current_dir);
+    UserService.account_settings(current_dir);
+    </script>
 </body>
 
 </html>

@@ -11,7 +11,11 @@ class UserbookDao extends BaseDao{
   }
 
   public function get_userbooks_shelf($user_id){
-    $query = "SELECT b.*, ub.id as 'userbook_id', ub.user_id as 'userbook_user_id', ub.bookmark FROM userbooks ub INNER JOIN books b ON ub.book_id = b.id WHERE ub.user_id = :user_id";
+    $query = "SELECT b.*, a.name as author_name, ub.id as 'userbook_id', ub.user_id as 'userbook_user_id', ub.bookmark 
+    FROM userbooks ub 
+    INNER JOIN books b ON ub.book_id = b.id 
+    INNER JOIN authors a ON b.author_id = a.id 
+    WHERE ub.user_id = :user_id";
     
     return $this->query($query, ['user_id' => $user_id]);
   }
@@ -41,7 +45,7 @@ class UserbookDao extends BaseDao{
 
     $this->query_unique($query, ['userbook_id' => $userbook_id]);
 
-    return ["message" => "deleted"];
+    return ["message" => "Removed from the shelf"];
   }
 
 

@@ -40,7 +40,7 @@ class UI {
           <div class="row justify-content-center">
           <div class="col-10 text-center">
             <img class="img-fluid" alt="Profile Photo" style="max-height: 8rem;"
-              src="`+$current_dir+`/assets/avatars/`+user.avatar_id+`.png">
+              src="`+$current_dir+`/assets/avatars/`+user.avatar_id+`.svg">
           </div>
         </div>
         <div class="row justify-content-center my-3">

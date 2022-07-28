@@ -97,15 +97,35 @@
             <div name="Book Container Title Row" id="bookContainerTitleRow" class="row align-items-end mb-2">
 
               <div name="Book and Author Name" class="col">
+
                 <div class="row">
-                  <h4 id="book-name" class="card-title placeholder-wave"
-                    style="width:fit-content; margin:0; padding-right:0;">
-                    <span class="placeholder" style="width:13rem; margin-bottom: 0.3em;"></span>
-                  </h4>
-                  <p id="author-name" class="card-title placeholder-wave"
-                    style="width:fit-content; margin:0; margin-top:0.5rem;">
-                    <span class="placeholder bg-secondary" style="width:9rem; margin-bottom: 0.5em;"></span>
-                  </p>
+                  <div class="col-2 col-md-1 align-self-center" style="padding-right: 0;">
+                    <a href="javascript:void(0);" target="_blank" class="">
+
+                      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" style="max-width: 40px;"
+                        fill="currentColor" class="bi bi-bookmark btn-outline-success" viewBox="0 0 16 16">
+                        <path
+                          d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z">
+                        </path>
+                      </svg>
+
+                      <!-- <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" style="max-width: 40px;" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                        <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+                      </svg> -->
+
+
+                    </a>
+                  </div>
+                  <div class="col">
+                    <h4 id="book-name" class="card-title placeholder-wave"
+                      style="width:fit-content; margin:0; padding-right:0;">
+                      <span class="placeholder" style="width:13rem; margin-bottom: 0.3em;"></span>
+                    </h4>
+                    <p id="author-name" class="card-title placeholder-wave"
+                      style="width:fit-content; margin:0; margin-top:0.5rem;">
+                      <span class="placeholder bg-secondary" style="width:9rem; margin-bottom: 0.5em;"></span>
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -189,8 +209,9 @@
 
                 </button>
 
-                <div id="bookText" name="Book Text" class="col fit" style="overflow-y: scroll;" data-bs-spy="scroll" onscroll="selfUI.on_book_scroll();"
-                  data-bs-target="#bookChapters" data-bs-smooth-scroll="true" tabindex="0">
+                <div id="bookText" name="Book Text" class="col fit" style="overflow-y: scroll;" data-bs-spy="scroll"
+                  onscroll="selfUI.on_book_scroll();" data-bs-target="#bookChapters" data-bs-smooth-scroll="true"
+                  tabindex="0">
 
 
 
@@ -230,7 +251,7 @@
     </div>
   </main>
 
-  
+
   <modals>
     <!-- Modal -->
     <div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="signUpModalLabel" aria-hidden="true">
@@ -311,7 +332,7 @@
 
 
 
-  
+
   <js_import>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>

@@ -262,4 +262,22 @@ class selfUI {
     click();    
   }
 
+  static on_bookmark_click(){    
+    $.ajax({
+      url: current_dir+'/rest/userbook_shelf/'+localStorage.getItem('token'),
+      type: 'PUT',
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
+      },
+      success: function (result) {
+        // console.log(result);
+        localStorage.setItem("token", result.token);
+        UI.token_check(current_dir);
+      },
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+        toastr.error(XMLHttpRequest.responseJSON.message);
+      }
+    });
+  }
+
 }

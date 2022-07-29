@@ -237,6 +237,7 @@ class selfUI {
     if (localStorage.getItem("page_change") === '1') localStorage.setItem("page_change", '0');
     else {
       selfUI.go_to_active_page();
+      selfUI.check_bookmark();
     }
   }
 
@@ -254,30 +255,159 @@ class selfUI {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    async function click(){
+    async function click() {
       await sleep(200);
       selfUI.go_to_active_page();
     }
 
-    click();    
+    click();
   }
 
-  static on_bookmark_click(){    
+  static get_active_page() {
+    for (var i = 0; i < document.getElementsByName("Page Heading").length; i++) {
+      if (document.getElementsByName("Page Heading")[i].getAttribute("class") == "active") {
+        return i + 1;
+      }
+    }
+  }
+
+  static on_bookmark_click() {
+
+    var bookmark_status = selfUI.check_bookmark();
+
+    if (bookmark_status) {
+      localStorage.removeItem("bookmark");
+      selfUI.check_bookmark();
+
+      $.ajax({
+        url: current_dir + '/rest/userbook_shelf/' +
+          localStorage.getItem('current_book_id') + '/' + 0,
+        type: 'PUT',
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
+        },
+        success: function (result) {
+          // console.log(result);
+          localStorage.removeItem("bookmark");
+          selfUI.check_bookmark();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          toastr.error(XMLHttpRequest.responseJSON.message);
+        }
+      });
+
+    }
+
+    else {
+      var active_page = 0;
+      while (active_page === 0) {
+        active_page = selfUI.get_active_page();
+      }
+      $.ajax({
+        url: current_dir + '/rest/userbook_shelf/' +
+          localStorage.getItem('current_book_id') + '/' + active_page,
+        type: 'PUT',
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
+        },
+        success: function (result) {
+          // console.log(result);
+          localStorage.setItem("bookmark", active_page);
+          selfUI.check_bookmark();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          toastr.error(XMLHttpRequest.responseJSON.message);
+        }
+      });
+    }
+
+  }
+
+  static check_bookmark() {
+    var bookmark_attr = $('#bookmark').attr('active');
+    // console.log(bookmark_attr);
+    var bookmark_local = localStorage.getItem('bookmark');
+    if (typeof bookmark_attr === 'undefined' || bookmark_attr === false) {
+      // bookmark is not active
+      // console.log('bookmark is not active');
+      if (typeof bookmark_local === 'undefined' || bookmark_local === null) {
+        //bookmark is not set
+        // console.log('bookmark is not set');
+        selfUI.change_bookmark_icon('passive');
+        return false;
+      }
+      else {
+        //bookmark is set
+        // console.log('bookmark is set');
+        if(bookmark_local === (selfUI.get_active_page()+'')){
+          $('#bookmark').attr('active', '');
+          selfUI.change_bookmark_icon('active');
+          return true;
+        }
+        else return false;
+      }
+    }
+    else {
+      // bookmark is active
+      // console.log('bookmark is active');
+      if (typeof bookmark_local === 'undefined' || bookmark_local === null) {
+        //bookmark is not set
+        // console.log('bookmark is not set');
+        $('#bookmark').removeAttr('active');
+        selfUI.change_bookmark_icon('passive');
+        return false;
+      }
+      else {
+        //bookmark is set
+        // console.log('bookmark is set');
+        if(bookmark_local !== selfUI.get_active_page()+''){
+          selfUI.change_bookmark_icon('passive');
+          $('#bookmark').removeAttr('active');
+        }
+        return true;
+      }
+    }
+
+  }
+
+  static change_bookmark_icon(activity) {
+    if (activity === 'active') {
+      $('#bookmark').html(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" style="max-width: 40px;" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+        <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+        </svg>
+      `);
+    }
+    else {
+      $('#bookmark').html(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" style="max-width: 40px;" fill="currentColor" class="bi bi-bookmark btn-outline-success" viewBox="0 0 16 16"> <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"> </path>
+        </svg>
+      `);
+    }
+  }
+
+  static get_bookmark(){
     $.ajax({
-      url: current_dir+'/rest/userbook_shelf/'+localStorage.getItem('token'),
-      type: 'PUT',
+      url: current_dir + '/rest/userbook_shelf/' +
+        localStorage.getItem('current_book_id'),
+      type: 'GET',
       beforeSend: function (xhr) {
         xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
       },
       success: function (result) {
         // console.log(result);
-        localStorage.setItem("token", result.token);
-        UI.token_check(current_dir);
+        if(result.bookmark !== null){
+          localStorage.setItem("bookmark", result.bookmark);
+          selfUI.go_to_page(result.bookmark);
+        }
+        else localStorage.removeItem("bookmark");
+        selfUI.check_bookmark();
       },
       error: function (XMLHttpRequest, textStatus, errorThrown) {
         toastr.error(XMLHttpRequest.responseJSON.message);
       }
     });
+
   }
 
 }

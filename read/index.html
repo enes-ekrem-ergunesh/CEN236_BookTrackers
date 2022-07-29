@@ -100,7 +100,7 @@
 
                 <div class="row">
                   <div class="col-2 col-md-1 align-self-center" style="padding-right: 0;">
-                    <a href="javascript:void(0);" target="_blank" class="">
+                    <a id="bookmark" onclick="selfUI.on_bookmark_click();" href="javascript:void(0);">
 
                       <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" style="max-width: 40px;"
                         fill="currentColor" class="bi bi-bookmark btn-outline-success" viewBox="0 0 16 16">
@@ -355,6 +355,7 @@
     UserService.init(current_dir);
     selfUI.init_listeners();
     BookService.set_reader(current_dir);
+    selfUI.get_bookmark();
   </script>
 
 </body>

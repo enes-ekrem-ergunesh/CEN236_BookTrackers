@@ -96,6 +96,7 @@ var BookService = {
         // console.log(result[0]);
         $('#book-name').html(result[0].name);
         $('#author-name').html("by " + result[0].author_name); 
+        selfUI.get_bookmark();
         selfUI.check_bookmark();
       },
       error: function (XMLHttpRequest, textStatus, errorThrown) {

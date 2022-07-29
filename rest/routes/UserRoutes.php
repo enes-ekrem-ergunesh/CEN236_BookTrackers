@@ -131,8 +131,8 @@ Flight::route('DELETE /users/@id', function($id){
   *     @OA\RequestBody(description="Basic user info", required=true,
   *       @OA\MediaType(mediaType="application/json",
   *    			@OA\Schema(
-  *    				@OA\Property(property="email", type="string", example="enes@mail",	description="Email"),
-  *    				@OA\Property(property="password", type="string", example="123",	description="Password" )
+  *    				@OA\Property(property="email", type="string", example="user@example.com",	description="Email"),
+  *    				@OA\Property(property="password", type="string", example="12345678",	description="Password" )
   *        )
   *     )),
   *     @OA\Response(

@@ -387,26 +387,34 @@ class selfUI {
   }
 
   static get_bookmark(){
-    $.ajax({
-      url: current_dir + '/rest/userbook_shelf/' +
-        localStorage.getItem('current_book_id'),
-      type: 'GET',
-      beforeSend: function (xhr) {
-        xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
-      },
-      success: function (result) {
-        // console.log(result);
-        if(result.bookmark !== null){
-          localStorage.setItem("bookmark", result.bookmark);
-          selfUI.go_to_page(result.bookmark);
+    var token = localStorage.getItem('token');
+    if(token){
+
+      $.ajax({
+        url: current_dir + '/rest/userbook_shelf/' +
+          localStorage.getItem('current_book_id'),
+        type: 'GET',
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader('Authorization', localStorage.getItem('token'));
+        },
+        success: function (result) {
+          // console.log(result);
+          if(result.bookmark !== null){
+            localStorage.setItem("bookmark", result.bookmark);
+            selfUI.go_to_page(result.bookmark);
+          }
+          else localStorage.removeItem("bookmark");
+          selfUI.check_bookmark();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          toastr.error(XMLHttpRequest.responseJSON.message);
         }
-        else localStorage.removeItem("bookmark");
-        selfUI.check_bookmark();
-      },
-      error: function (XMLHttpRequest, textStatus, errorThrown) {
-        toastr.error(XMLHttpRequest.responseJSON.message);
-      }
-    });
+      });
+    }
+    else{
+      $('#bookmark').attr('onclick', '');//disable
+      $('#bookmark_col').attr('style', 'padding-right: 0; visibility: hidden');//disable
+    }
 
   }
 
